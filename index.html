@@ -3,20 +3,32 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>אתר אינטראקטיבי מרשים</title>
+    
+    <!-- הגדרות SEO חזקות לישראל -->
+    <meta name="description" content="מומחים בבניית אוטומציה עסקית וייעול תהליכים. חסכו זמן, הפחיתו טעויות אנוש והגדילו רווחים עם פתרונות טכנולוגיים חכמים המותאמים אישית לעסק שלכם.">
+    <meta name="keywords" content="אוטומציה עסקית, ייעול תהליכים, חיבור מערכות, CRM, אוטומציה שיווקית, פיתוח אוטומציות, Make, Zapier, אוטומציה לעסקים קטנים">
+    <meta name="author" content="מומחי אוטומציה">
+    <link rel="canonical" href="https://your-domain.co.il/">
+    
+    <title>אוטומציה עסקית חכמה | ייעול תהליכים וחיסכון בזמן</title>
+    
     <style>
-        /* --- הגדרות בסיס ומשתנים --- */
+        /* --- הגדרות בסיס ומשתנים (עיצוב נקי, מקצועי ואמין) --- */
         :root {
-            --primary-color: #00aaff; /* צבע ראשי - כחול בהיר */
-            --background-color: #121212; /* צבע רקע - כהה */
-            --surface-color: #1e1e1e; /* צבע משטחים - אפור כהה */
-            --text-color: #e0e0e0; /* צבע טקסט ראשי */
-            --text-secondary-color: #a0a0a0; /* צבע טקסט משני */
-            --shadow-color: rgba(0, 0, 0, 0.5);
-            --font-main: 'Heebo', sans-serif; /* פונט עברי מודרני */
+            --primary-color: #2563eb; /* כחול מקצועי ואמין */
+            --primary-hover: #1d4ed8;
+            --background-color: #f8fafc; /* אפור בהיר מאוד - נקי */
+            --surface-color: #ffffff; /* לבן נקי לכרטיסיות */
+            --text-main: #0f172a; /* כחול-אפור כהה לטקסט קריא */
+            --text-muted: #475569; /* טקסט משני */
+            --border-color: #e2e8f0;
+            --shadow-sm: 0 1px 3px rgba(0,0,0,0.1);
+            --shadow-md: 0 4px 6px -1px rgba(0,0,0,0.1);
+            --shadow-lg: 0 10px 15px -3px rgba(0,0,0,0.1);
+            --font-main: 'Assistant', 'Heebo', sans-serif;
         }
 
-        @import url('https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Assistant:wght@300;400;600;700&display=swap');
 
         /* --- איפוס עיצובים וסגנון גלובלי --- */
         * {
@@ -26,21 +38,22 @@
         }
 
         html {
-            scroll-behavior: smooth; /* גלילה חלקה */
+            scroll-behavior: smooth;
         }
 
         body {
             font-family: var(--font-main);
             background-color: var(--background-color);
-            color: var(--text-color);
-            line-height: 1.6;
-            overflow-x: hidden; /* מניעת גלילה אופקית */
+            color: var(--text-main);
+            line-height: 1.7;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
         }
 
         .container {
-            max-width: 1200px;
+            max-width: 1100px;
             margin: auto;
-            padding: 0 20px;
+            padding: 0 24px;
         }
 
         /* --- כותרת עליונה (Header) וניווט --- */
@@ -51,14 +64,16 @@
             width: 100%;
             z-index: 1000;
             padding: 20px 0;
-            transition: background-color 0.4s ease, padding 0.4s ease;
+            background-color: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(8px);
+            border-bottom: 1px solid transparent;
+            transition: all 0.3s ease;
         }
 
         .main-header.scrolled {
-            background-color: rgba(30, 30, 30, 0.85);
-            backdrop-filter: blur(10px);
-            padding: 15px 0;
-            box-shadow: 0 2px 10px var(--shadow-color);
+            padding: 12px 0;
+            border-bottom: 1px solid var(--border-color);
+            box-shadow: var(--shadow-sm);
         }
 
         .main-header .container {
@@ -68,258 +83,339 @@
         }
         
         .logo {
-            font-size: 1.8rem;
+            font-size: 1.5rem;
             font-weight: 700;
             color: var(--primary-color);
             text-decoration: none;
+            letter-spacing: -0.5px;
         }
 
         .main-nav ul {
             display: flex;
             list-style: none;
+            gap: 30px;
         }
 
         .main-nav a {
-            color: var(--text-color);
+            color: var(--text-muted);
             text-decoration: none;
-            padding: 10px 15px;
-            font-weight: 400;
-            position: relative;
-            transition: color 0.3s ease;
-        }
-
-        .main-nav a::after {
-            content: '';
-            position: absolute;
-            width: 0;
-            height: 2px;
-            bottom: 0;
-            right: 15px;
-            background-color: var(--primary-color);
-            transition: width 0.4s ease;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: color 0.2s ease;
         }
 
         .main-nav a:hover {
             color: var(--primary-color);
         }
-        
-        .main-nav a:hover::after {
-            width: calc(100% - 30px);
-        }
 
         /* --- אזור הגיבור (Hero Section) --- */
         .hero {
-            height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
+            padding: 160px 0 100px;
+            background: linear-gradient(135deg, #ffffff 0%, #f1f5f9 100%);
             text-align: center;
-            position: relative;
-            overflow: hidden;
-        }
-
-        #particles-js {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            top: 0;
-            left: 0;
-            z-index: 1;
-        }
-        
-        .hero-content {
-            z-index: 2;
-            position: relative;
+            border-bottom: 1px solid var(--border-color);
         }
 
         .hero h1 {
-            font-size: 4.5rem;
-            margin-bottom: 10px;
+            font-size: 3.5rem;
             font-weight: 700;
-            /* אפקט גרדיאנט על הטקסט */
-            background: linear-gradient(45deg, var(--primary-color), #ffffff);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            animation: fadeInDown 1s ease-out;
+            color: var(--text-main);
+            margin-bottom: 20px;
+            line-height: 1.1;
+            letter-spacing: -1px;
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        .hero h1 span {
+            color: var(--primary-color);
         }
 
         .hero p {
-            font-size: 1.5rem;
-            color: var(--text-secondary-color);
-            animation: fadeInUp 1s ease-out 0.5s;
-            animation-fill-mode: backwards; /* האנימציה תתחיל מהמצב הנסתר */
+            font-size: 1.25rem;
+            color: var(--text-muted);
+            max-width: 700px;
+            margin: 0 auto 40px;
+            animation: fadeInUp 0.8s ease-out 0.2s backwards;
         }
         
         .cta-button {
             display: inline-block;
-            margin-top: 30px;
-            padding: 15px 30px;
+            padding: 14px 32px;
             background-color: var(--primary-color);
             color: #fff;
             text-decoration: none;
-            border-radius: 50px;
-            font-weight: bold;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            animation: zoomIn 1s ease-out 1s;
-            animation-fill-mode: backwards;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: background-color 0.2s ease, transform 0.2s ease;
+            animation: fadeInUp 0.8s ease-out 0.4s backwards;
         }
 
         .cta-button:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(0, 170, 255, 0.3);
+            background-color: var(--primary-hover);
+            transform: translateY(-2px);
+        }
+
+        .cta-secondary {
+            display: inline-block;
+            padding: 14px 32px;
+            background-color: transparent;
+            color: var(--text-main);
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            border: 1px solid var(--border-color);
+            margin-right: 15px;
+            transition: all 0.2s ease;
+            animation: fadeInUp 0.8s ease-out 0.4s backwards;
+        }
+
+        .cta-secondary:hover {
+            background-color: var(--border-color);
         }
 
         /* --- אזורים כלליים (Sections) --- */
         .section {
             padding: 100px 0;
-            opacity: 0; /* מתחיל שקוף */
-            transform: translateY(50px); /* מתחיל מעט למטה */
-            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
         }
 
-        .section.visible {
-            opacity: 1;
-            transform: translateY(0);
+        .section-header {
+            text-align: center;
+            margin-bottom: 60px;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
         }
 
         .section-title {
-            text-align: center;
-            font-size: 2.8rem;
-            margin-bottom: 60px;
-            color: var(--primary-color);
-            position: relative;
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+            color: var(--text-main);
         }
 
-        .section-title::after {
-            content: '';
-            position: absolute;
-            width: 80px;
-            height: 3px;
-            background-color: var(--primary-color);
-            bottom: -15px;
-            left: 50%;
-            transform: translateX(-50%);
+        .section-subtitle {
+            font-size: 1.1rem;
+            color: var(--text-muted);
         }
 
-        /* --- אזור תיק עבודות (Portfolio) --- */
-        .portfolio-grid {
+        /* --- שירותים / פתרונות (Services) --- */
+        .services-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 30px;
         }
         
-        .portfolio-card {
+        .service-card {
             background: var(--surface-color);
-            border-radius: 15px;
-            overflow: hidden;
-            box-shadow: 0 10px 30px var(--shadow-color);
-            transition: transform 0.3s ease;
-            transform-style: preserve-3d; /* מאפשר אפקטים תלת-ממדיים */
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 40px 30px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
 
-        .portfolio-card-image {
-            width: 100%;
-            height: 200px;
-            background-size: cover;
-            background-position: center;
-            filter: grayscale(50%);
-            transition: filter 0.5s ease;
-        }
-        
-        .portfolio-card:hover .portfolio-card-image {
-            filter: grayscale(0%);
+        .service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
         }
 
-        .portfolio-card-content {
-            padding: 25px;
-        }
-
-        .portfolio-card-content h3 {
+        .service-icon {
+            width: 50px;
+            height: 50px;
+            background-color: #eff6ff;
             color: var(--primary-color);
-            margin-bottom: 10px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+        }
+
+        .service-card h3 {
+            font-size: 1.4rem;
+            margin-bottom: 15px;
+            color: var(--text-main);
+        }
+
+        .service-card p {
+            color: var(--text-muted);
+            font-size: 1rem;
+        }
+
+        /* --- הגישה שלנו (Approach) - שיווק לא אגרסיבי --- */
+        .approach-section {
+            background-color: var(--surface-color);
+            border-top: 1px solid var(--border-color);
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .approach-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .approach-text h2 {
+            font-size: 2.2rem;
+            margin-bottom: 20px;
+        }
+
+        .approach-text p {
+            margin-bottom: 20px;
+            color: var(--text-muted);
+            font-size: 1.1rem;
+        }
+
+        .approach-list {
+            list-style: none;
+            margin-top: 30px;
+        }
+
+        .approach-list li {
+            position: relative;
+            padding-right: 30px;
+            margin-bottom: 15px;
+            font-weight: 600;
+            color: var(--text-main);
+        }
+
+        .approach-list li::before {
+            content: '✓';
+            position: absolute;
+            right: 0;
+            top: 0;
+            color: var(--primary-color);
+            font-weight: bold;
+        }
+
+        .approach-image {
+            background-color: #f1f5f9;
+            border-radius: 16px;
+            height: 400px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-muted);
+            border: 1px dashed #cbd5e1;
         }
 
         /* --- אזור צור קשר --- */
-        .contact-form {
-            max-width: 600px;
+        .contact-section {
+            background-color: var(--background-color);
+        }
+
+        .contact-wrapper {
+            background: var(--surface-color);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 50px;
+            max-width: 700px;
             margin: auto;
+            box-shadow: var(--shadow-md);
+        }
+        
+        .contact-form {
             display: flex;
             flex-direction: column;
             gap: 20px;
         }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .form-group label {
+            font-weight: 600;
+            font-size: 0.95rem;
+            color: var(--text-main);
+        }
         
         .contact-form input, .contact-form textarea {
             width: 100%;
-            padding: 15px;
-            border: 2px solid var(--surface-color);
-            background: transparent;
+            padding: 14px;
+            border: 1px solid var(--border-color);
+            background: var(--background-color);
             border-radius: 8px;
-            color: var(--text-color);
+            color: var(--text-main);
             font-family: var(--font-main);
-            transition: border-color 0.3s ease;
+            transition: border-color 0.2s ease, box-shadow 0.2s ease;
         }
         
         .contact-form input:focus, .contact-form textarea:focus {
             outline: none;
             border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
         }
 
         .contact-form button {
-            padding: 15px;
+            padding: 16px;
             background-color: var(--primary-color);
             color: #fff;
             border: none;
             border-radius: 8px;
             cursor: pointer;
             font-size: 1.1rem;
-            font-weight: bold;
-            transition: background-color 0.3s ease, transform 0.2s ease;
+            font-weight: 600;
+            transition: background-color 0.2s ease;
+            margin-top: 10px;
         }
 
         .contact-form button:hover {
-            background-color: #0088cc;
-            transform: scale(1.02);
+            background-color: var(--primary-hover);
+        }
+
+        .contact-disclaimer {
+            text-align: center;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            margin-top: 15px;
         }
 
         /* --- Footer --- */
         .main-footer {
             padding: 40px 0;
-            background-color: var(--surface-color);
+            background-color: #0f172a;
+            color: #94a3b8;
             text-align: center;
-            color: var(--text-secondary-color);
+            border-top: 1px solid var(--border-color);
+        }
+
+        .main-footer p {
+            font-size: 0.95rem;
         }
 
         /* --- אנימציות --- */
-        @keyframes fadeInDown {
-            from { opacity: 0; transform: translateY(-30px); }
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
             to { opacity: 1; transform: translateY(0); }
         }
 
-        @keyframes fadeInUp {
-            from { opacity: 0; transform: translateY(30px); }
-            to { opacity: 1; transform: translateY(0); }
+        .fade-in-section {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+            will-change: opacity, visibility;
         }
-        
-        @keyframes zoomIn {
-            from { opacity: 0; transform: scale(0.8); }
-            to { opacity: 1; transform: scale(1); }
+
+        .fade-in-section.is-visible {
+            opacity: 1;
+            transform: none;
         }
         
         /* --- רספונסיביות --- */
         @media (max-width: 768px) {
-            .hero h1 {
-                font-size: 3rem;
-            }
-            .hero p {
-                font-size: 1.2rem;
-            }
-            .main-nav {
-                /* כאן אפשר להוסיף תפריט המבורגר למובייל */
-                display: none; 
-            }
-            .section-title {
-                font-size: 2.2rem;
-            }
+            .hero h1 { font-size: 2.5rem; }
+            .hero p { font-size: 1.1rem; }
+            .main-nav { display: none; }
+            .approach-content { grid-template-columns: 1fr; gap: 40px; }
+            .approach-image { height: 250px; }
+            .contact-wrapper { padding: 30px 20px; }
+            .cta-secondary { margin-right: 0; margin-top: 15px; display: block; }
         }
     </style>
 </head>
@@ -328,12 +424,12 @@
     <!-- כותרת עליונה וניווט -->
     <header class="main-header" id="main-header">
         <div class="container">
-            <a href="#" class="logo">האתר שלי</a>
+            <a href="#" class="logo">AutoFlow</a>
             <nav class="main-nav">
                 <ul>
-                    <li><a href="#about">אודות</a></li>
-                    <li><a href="#portfolio">תיק עבודות</a></li>
-                    <li><a href="#contact">צור קשר</a></li>
+                    <li><a href="#services">פתרונות</a></li>
+                    <li><a href="#approach">הגישה שלנו</a></li>
+                    <li><a href="#contact">ייעוץ ללא התחייבות</a></li>
                 </ul>
             </nav>
         </div>
@@ -342,74 +438,113 @@
     <main>
         <!-- אזור הגיבור הראשי -->
         <section class="hero">
-            <canvas id="particles-js"></canvas>
-            <div class="hero-content">
-                <h1>ברוכים הבאים לאתר המרשים שלי</h1>
-                <p>חווית משתמש אינטראקטיבית ומעוצבת</p>
-                <a href="#about" class="cta-button">גלו עוד</a>
+            <div class="container">
+                <h1>מייעלים את העסק שלך עם <span>אוטומציה חכמה</span></h1>
+                <p>אנחנו עוזרים לעסקים לחסוך עשרות שעות עבודה בחודש, למנוע טעויות אנוש ולשפר את השירות - באמצעות חיבור מערכות וייעול תהליכים, בלי כאב ראש טכנולוגי.</p>
+                <div>
+                    <a href="#contact" class="cta-button">בדיקת התאמה לעסק</a>
+                    <a href="#services" class="cta-secondary">איך זה עובד?</a>
+                </div>
             </div>
         </section>
 
-        <!-- אזור אודות -->
-        <section id="about" class="section">
-            <div class="container">
-                <h2 class="section-title">אודותינו</h2>
-                <p style="text-align: center; max-width: 800px; margin: auto;">
-                    זהו אזור בו תוכלו לספר על עצמכם, על החברה או על הפרויקט. הטקסט כאן מופיע עם אנימציית "Fade In" כאשר גוללים אליו. העיצוב המודרני והנקי נועד להשאיר רושם חזק על המבקרים. השתמשו בפסקאות קצרות וברורות כדי להעביר את המסר שלכם בצורה הטובה ביותר.
-                </p>
+        <!-- אזור שירותים / פתרונות -->
+        <section id="services" class="section">
+            <div class="container fade-in-section">
+                <div class="section-header">
+                    <h2 class="section-title">איפה אנחנו חוסכים לכם זמן?</h2>
+                    <p class="section-subtitle">פתרונות אוטומציה ממוקדים שפותרים צווארי בקבוק אמיתיים בעסק.</p>
+                </div>
+                
+                <div class="services-grid">
+                    <article class="service-card">
+                        <div class="service-icon">🔄</div>
+                        <h3>סנכרון מערכות ו-CRM</h3>
+                        <p>חיבור חלק בין מערכות ניהול הלקוחות, הנהלת החשבונות ואתרי האינטרנט שלכם. מידע עובר אוטומטית ללא צורך בהקלדה כפולה.</p>
+                    </article>
+                    
+                    <article class="service-card">
+                        <div class="service-icon">📈</div>
+                        <h3>אוטומציה בתהליכי מכירה</h3>
+                        <p>טיפול אוטומטי בלידים נכנסים, שליחת הצעות מחיר, תזכורות פולו-אפ ללקוחות ועדכון סטטוסים במערכת - כדי שלא תפספסו אף עסקה.</p>
+                    </article>
+                    
+                    <article class="service-card">
+                        <div class="service-icon">💬</div>
+                        <h3>שירות לקוחות חכם</h3>
+                        <p>הטמעת צ'אטבוטים, מענה אוטומטי לשאלות נפוצות בוואטסאפ ובמייל, וניתוב פניות חכם לצוות הנכון בזמן הנכון.</p>
+                    </article>
+                </div>
             </div>
         </section>
 
-        <!-- אזור תיק עבודות -->
-        <section id="portfolio" class="section">
-            <div class="container">
-                <h2 class="section-title">תיק עבודות</h2>
-                <div class="portfolio-grid">
-                    <!-- כרטיס 1 -->
-                    <div class="portfolio-card" data-tilt>
-                        <div class="portfolio-card-image" style="background-image: url('https://images.unsplash.com/photo-1555066931-4365d1469c98?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwzNTc5fDB8MXxzZWFyY2h8MTF8fGNvZGluZ3x8MHx8fHwxNjE4NDExOTU2&ixlib=rb-1.2.1&q=80&w=400');"></div>
-                        <div class="portfolio-card-content">
-                            <h3>פרויקט אלפא</h3>
-                            <p>תיאור קצר של הפרויקט. הזיזו את העכבר מעל הכרטיס כדי לראות את אפקט ההטיה התלת-ממדי.</p>
-                        </div>
+        <!-- אזור הגישה שלנו (שיווק לא אגרסיבי) -->
+        <section id="approach" class="section approach-section">
+            <div class="container fade-in-section">
+                <div class="approach-content">
+                    <div class="approach-text">
+                        <h2>עובדים בשבילכם, לא בשביל הטכנולוגיה</h2>
+                        <p>אנחנו מאמינים שטכנולוגיה צריכה לשרת את העסק, ולא להפך. הגישה שלנו מבוססת על הבנה עמוקה של התהליכים העסקיים שלכם לפני כתיבת שורת קוד אחת.</p>
+                        <p>בלי הבטחות שווא ובלי לדחוף מערכות יקרות שאין לכם צורך בהן. אנחנו בונים פתרונות רזים, יעילים ומדויקים.</p>
+                        
+                        <ul class="approach-list">
+                            <li>אפיון תהליכים מעמיק ולמידת העסק</li>
+                            <li>שימוש בכלים מובילים (Make, Zapier, API)</li>
+                            <li>הדרכה מלאה ותמיכה טכנית שוטפת</li>
+                            <li>שקיפות מלאה בעלויות ובלוחות הזמנים</li>
+                        </ul>
                     </div>
-                    <!-- כרטיס 2 -->
-                    <div class="portfolio-card" data-tilt>
-                        <div class="portfolio-card-image" style="background-image: url('https://images.unsplash.com/photo-1515879218367-8466d910aaa4?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwzNTc5fDB8MXxzZWFyY2h8MTN8fGNvZGluZ3x8MHx8fHwxNjE4NDExOTU2&ixlib=rb-1.2.1&q=80&w=400');"></div>
-                        <div class="portfolio-card-content">
-                            <h3>פרויקט בטא</h3>
-                            <p>כל כרטיס מגיב לתנועת העכבר, מה שיוצר חוויה אינטראקטיבית ומושכת את העין.</p>
-                        </div>
-                    </div>
-                    <!-- כרטיס 3 -->
-                    <div class="portfolio-card" data-tilt>
-                        <div class="portfolio-card-image" style="background-image: url('https://images.unsplash.com/photo-1542831371-29b0f74f9713?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwzNTc5fDB8MXxzZWFyY2h8NHx8Y29kaW5nfHwwfHx8fDE2MTg0MTE5NTY&ixlib=rb-1.2.1&q=80&w=400');"></div>
-                        <div class="portfolio-card-content">
-                            <h3>פרויקט גמא</h3>
-                            <p>התמונות הן מ-Unsplash ומשמשות כדוגמה בלבד. ניתן להחליף אותן בקלות.</p>
-                        </div>
+                    <div class="approach-image">
+                        <!-- מקום לאיור מקצועי או תמונה של סביבת עבודה -->
+                        <svg width="120" height="120" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
+                            <line x1="8" y1="21" x2="16" y2="21"></line>
+                            <line x1="12" y1="17" x2="12" y2="21"></line>
+                            <polyline points="16 8 12 12 8 8"></polyline>
+                        </svg>
                     </div>
                 </div>
             </div>
         </section>
 
         <!-- אזור צור קשר -->
-        <section id="contact" class="section">
-            <div class="container">
-                <h2 class="section-title">צרו קשר</h2>
-                <form class="contact-form">
-                    <input type="text" placeholder="שם מלא" required>
-                    <input type="email" placeholder="כתובת אימייל" required>
-                    <textarea rows="6" placeholder="ההודעה שלכם..."></textarea>
-                    <button type="submit">שליחה</button>
-                </form>
+        <section id="contact" class="section contact-section">
+            <div class="container fade-in-section">
+                <div class="section-header">
+                    <h2 class="section-title">בואו נבדוק איך אפשר לייעל</h2>
+                    <p class="section-subtitle">השאירו פרטים ונחזור אליכם לשיחת ייעוץ קצרה, ללא התחייבות וללא לחץ מכירתי.</p>
+                </div>
+                
+                <div class="contact-wrapper">
+                    <form class="contact-form">
+                        <div class="form-group">
+                            <label for="name">שם מלא / שם העסק</label>
+                            <input type="text" id="name" name="name" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="phone">טלפון לחזרה</label>
+                            <input type="tel" id="phone" name="phone" required dir="ltr" style="text-align: right;">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="message">מה האתגר המרכזי שלכם כרגע? (אופציונלי)</label>
+                            <textarea id="message" name="message" rows="4" placeholder="לדוגמה: אנחנו מבזבזים המון זמן על העתקת נתונים מהאתר ל-CRM..."></textarea>
+                        </div>
+                        
+                        <button type="submit">שלחו פנייה</button>
+                        <p class="contact-disclaimer">הפרטים שלכם נשארים אצלנו ולא יועברו לאף צד שלישי.</p>
+                    </form>
+                </div>
             </div>
         </section>
     </main>
 
     <!-- Footer -->
     <footer class="main-footer">
-        <p>&copy; 2024 כל הזכויות שמורות. נבנה באהבה.</p>
+        <div class="container">
+            <p>&copy; 2024 AutoFlow - פתרונות אוטומציה לעסקים. כל הזכויות שמורות.</p>
+        </div>
     </footer>
 
     <script>
@@ -418,7 +553,7 @@
             // --- 1. אפקט רקע משתנה בגלילה לכותרת העליונה ---
             const header = document.getElementById('main-header');
             window.addEventListener('scroll', () => {
-                if (window.scrollY > 50) {
+                if (window.scrollY > 20) {
                     header.classList.add('scrolled');
                 } else {
                     header.classList.remove('scrolled');
@@ -426,121 +561,34 @@
             });
 
             // --- 2. אנימציית הופעה של אזורים בגלילה (Fade In on Scroll) ---
-            const sections = document.querySelectorAll('.section');
             const observerOptions = {
                 root: null,
                 rootMargin: '0px',
-                threshold: 0.1 // 10% מהאלמנט צריך להיות גלוי
+                threshold: 0.15
             };
 
             const observer = new IntersectionObserver((entries, observer) => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
-                        entry.target.classList.add('visible');
-                        observer.unobserve(entry.target); // הפסקת הצפייה לאחר שהאנימציה הופעלה
+                        entry.target.classList.add('is-visible');
+                        observer.unobserve(entry.target);
                     }
                 });
             }, observerOptions);
 
-            sections.forEach(section => {
+            document.querySelectorAll('.fade-in-section').forEach(section => {
                 observer.observe(section);
             });
-
-            // --- 3. אפקט חלקיקים מרחפים ברקע (Particles.js) ---
-            const canvas = document.getElementById('particles-js');
-            const ctx = canvas.getContext('2d');
-            canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight;
-
-            let particlesArray;
-
-            // מאפייני חלקיק
-            class Particle {
-                constructor(x, y, directionX, directionY, size, color) {
-                    this.x = x;
-                    this.y = y;
-                    this.directionX = directionX;
-                    this.directionY = directionY;
-                    this.size = size;
-                    this.color = color;
-                }
-                draw() {
-                    ctx.beginPath();
-                    ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2, false);
-                    ctx.fillStyle = 'rgba(0, 170, 255, 0.5)';
-                    ctx.fill();
-                }
-                update() {
-                    if (this.x > canvas.width || this.x < 0) {
-                        this.directionX = -this.directionX;
-                    }
-                    if (this.y > canvas.height || this.y < 0) {
-                        this.directionY = -this.directionY;
-                    }
-                    this.x += this.directionX;
-                    this.y += this.directionY;
-                    this.draw();
-                }
-            }
             
-            // יצירת חלקיקים
-            function initParticles() {
-                particlesArray = [];
-                let numberOfParticles = (canvas.height * canvas.width) / 9000;
-                for (let i = 0; i < numberOfParticles; i++) {
-                    let size = (Math.random() * 3) + 1;
-                    let x = (Math.random() * ((innerWidth - size * 2) - (size * 2)) + size * 2);
-                    let y = (Math.random() * ((innerHeight - size * 2) - (size * 2)) + size * 2);
-                    let directionX = (Math.random() * .4) - .2;
-                    let directionY = (Math.random() * .4) - .2;
-                    let color = 'rgba(0,170,255,0.5)';
-                    particlesArray.push(new Particle(x, y, directionX, directionY, size, color));
-                }
-            }
-
-            // לולאת אנימציה
-            function animateParticles() {
-                requestAnimationFrame(animateParticles);
-                ctx.clearRect(0, 0, innerWidth, innerHeight);
-
-                for (let i = 0; i < particlesArray.length; i++) {
-                    particlesArray[i].update();
-                }
-            }
-            
-            initParticles();
-            animateParticles();
-
-            window.addEventListener('resize', () => {
-                canvas.width = innerWidth;
-                canvas.height = innerHeight;
-                initParticles();
-            });
-
-
-            // --- 4. אפקט הטיה תלת-ממדי לכרטיסים (3D Tilt Effect) ---
-            const tiltElements = document.querySelectorAll("[data-tilt]");
-            
-            tiltElements.forEach(element => {
-                element.addEventListener("mousemove", (e) => {
-                    const rect = element.getBoundingClientRect();
-                    const x = e.clientX - rect.left;
-                    const y = e.clientY - rect.top;
-                    
-                    const middleX = rect.width / 2;
-                    const middleY = rect.height / 2;
-                    
-                    const offsetX = ((x - middleX) / middleX) * 10; // מקסימום 10 מעלות הטיה
-                    const offsetY = ((y - middleY) / middleY) * -10; // הפוך כדי שההטיה תהיה טבעית
-                    
-                    element.style.transform = `perspective(1000px) rotateY(${offsetX}deg) rotateX(${offsetY}deg) scale(1.05)`;
+            // מניעת שליחת טופס (לצורך הדגמה)
+            const form = document.querySelector('.contact-form');
+            if(form) {
+                form.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    alert('תודה רבה! הפנייה התקבלה בהצלחה. נחזור אליך בהקדם.');
+                    form.reset();
                 });
-
-                element.addEventListener("mouseleave", () => {
-                    element.style.transform = 'perspective(1000px) rotateY(0deg) rotateX(0deg) scale(1)';
-                });
-            });
-
+            }
         });
     </script>
 </body>

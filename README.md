@@ -1,20 +1,29 @@
-<div align="center">
-<img width="1200" height="475" alt="GHBanner" src="https://github.com/user-attachments/assets/0aa67016-6eaf-458a-adb2-6e31a0763ed6" />
-</div>
+# AutoFlow - פתרונות אוטומציה לעסקים
 
-# Run and deploy your AI Studio app
+אתר תדמית מקצועי לעסק המתמחה בבניית אוטומציות, ייעול תהליכים וחיבור מערכות (CRM, Make, Zapier). 
+האתר נבנה בדגש על SEO לשוק הישראלי (RTL), ביצועים מהירים, וגישת שיווק לא אגרסיבית (Consultative Selling).
 
-This contains everything you need to run your app locally.
+## 🌐 כתובת האתר
+**[הכנס כאן את כתובת האתר שלך - לדוגמה: https://yourusername.github.io/your-repo-name/]**
 
-View your app in AI Studio: https://ai.studio/apps/f1b8fe92-f06b-4ac4-ae15-a4b9bf6146b4
+*(הערה: לאחר הפעלת GitHub Pages, תוכל לעדכן את השורה הזו עם הכתובת האמיתית שגיטהאב יספק לך, או עם הדומיין הפרטי שלך אם תחבר כזה).*
 
-## Run Locally
+## ✨ מאפיינים עיקריים
+* **קוד סטטי ונקי:** בנוי מ-HTML, CSS ו-JavaScript בלבד (ללא פריימוורקים כבדים), מה שמבטיח זמני טעינה אפסיים שגוגל אוהב.
+* **התאמה מלאה ל-SEO ישראלי:** תגיות Meta, היררכיית כותרות נכונה (H1, H2, H3), תמיכה מובנית במימין-לשמאל (RTL) וטקסטים ממוקדי מילות מפתח.
+* **עיצוב רספונסיבי:** מותאם בצורה מושלמת למכשירים ניידים, טאבלטים ומסכי מחשב.
+* **חווית משתמש (UX) מקצועית:** פלטת צבעים שמשדרת אמינות (B2B), אנימציות עדינות (Fade-in) וטופס יצירת קשר מזמין ולא מאיים.
 
-**Prerequisites:**  Node.js
+## 🚀 הוראות פריסה (Deployment) ל-GitHub Pages
+פרויקט זה מוכן ב-100% לאירוח חינמי ב-GitHub Pages.
 
+1. צור מאגר (Repository) חדש ב-GitHub.
+2. העלה את כל קבצי הפרויקט (כולל `index.html` וקובץ זה) למאגר שיצרת.
+3. במאגר שלך ב-GitHub, היכנס ללשונית **Settings** (הגדרות).
+4. בתפריט הצדדי, לחץ על **Pages**.
+5. תחת המקטע **Build and deployment** -> **Source**, בחר ב-`Deploy from a branch`.
+6. תחת **Branch**, בחר ב-`main` (או `master`) ולחץ על **Save**.
+7. המתן מספר דקות, וגיטהאב יציג לך את הכתובת החיה של האתר שלך בראש אותו עמוד!
 
-1. Install dependencies:
-   `npm install`
-2. Set the `GEMINI_API_KEY` in [.env.local](.env.local) to your Gemini API key
-3. Run the app:
-   `npm run dev`
+---
+נבנה במיוחד עבור מומחי אוטומציה שרוצים להציג נוכחות דיגיטלית מקצועית, אמינה ומהירה.
