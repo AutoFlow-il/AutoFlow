@@ -7,533 +7,614 @@
     <!-- הגדרות SEO חזקות לישראל -->
     <meta name="description" content="מומחים בבניית אוטומציה עסקית וייעול תהליכים. חסכו זמן, הפחיתו טעויות אנוש והגדילו רווחים עם פתרונות טכנולוגיים חכמים המותאמים אישית לעסק שלכם.">
     <meta name="keywords" content="אוטומציה עסקית, ייעול תהליכים, חיבור מערכות, CRM, אוטומציה שיווקית, פיתוח אוטומציות, Make, Zapier, אוטומציה לעסקים קטנים">
-    <meta name="author" content="מומחי אוטומציה">
-    <link rel="canonical" href="https://your-domain.co.il/">
+    <meta name="author" content="AutoFlow">
+    <link rel="canonical" href="https://almog787.github.io/Test2/">
     
-    <title>אוטומציה עסקית חכמה | ייעול תהליכים וחיסכון בזמן</title>
+    <title>AutoFlow | אוטומציה עסקית חכמה שחוסכת לך זמן</title>
     
     <style>
-        /* --- הגדרות בסיס ומשתנים (עיצוב נקי, מקצועי ואמין) --- */
+        /* --- הגדרות בסיס ומשתנים (עיצוב מודרני, הייטקיסטי ואמין) --- */
         :root {
-            --primary-color: #2563eb; /* כחול מקצועי ואמין */
-            --primary-hover: #1d4ed8;
-            --background-color: #f8fafc; /* אפור בהיר מאוד - נקי */
-            --surface-color: #ffffff; /* לבן נקי לכרטיסיות */
-            --text-main: #0f172a; /* כחול-אפור כהה לטקסט קריא */
-            --text-muted: #475569; /* טקסט משני */
-            --border-color: #e2e8f0;
-            --shadow-sm: 0 1px 3px rgba(0,0,0,0.1);
-            --shadow-md: 0 4px 6px -1px rgba(0,0,0,0.1);
-            --shadow-lg: 0 10px 15px -3px rgba(0,0,0,0.1);
-            --font-main: 'Assistant', 'Heebo', sans-serif;
+            --primary: #2563eb;
+            --primary-dark: #1e40af;
+            --primary-light: #dbeafe;
+            --accent: #10b981; /* ירוק אמרלד להצלחה/וידוא */
+            --bg-main: #f8fafc;
+            --bg-card: #ffffff;
+            --text-dark: #0f172a;
+            --text-body: #475569;
+            --border: #e2e8f0;
+            --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+            --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+            --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+            --radius: 16px;
+            --font-heading: 'Heebo', sans-serif;
+            --font-body: 'Assistant', sans-serif;
         }
 
-        @import url('https://fonts.googleapis.com/css2?family=Assistant:wght@300;400;600;700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Assistant:wght@400;600;700&family=Heebo:wght@400;700;900&display=swap');
 
-        /* --- איפוס עיצובים וסגנון גלובלי --- */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        html {
-            scroll-behavior: smooth;
-        }
-
+        /* --- איפוס --- */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
         body {
-            font-family: var(--font-main);
-            background-color: var(--background-color);
-            color: var(--text-main);
-            line-height: 1.7;
+            font-family: var(--font-body);
+            background-color: var(--bg-main);
+            color: var(--text-dark);
+            line-height: 1.6;
             overflow-x: hidden;
             -webkit-font-smoothing: antialiased;
         }
 
+        h1, h2, h3, .logo { font-family: var(--font-heading); }
+
         .container {
-            max-width: 1100px;
-            margin: auto;
+            max-width: 1200px;
+            margin: 0 auto;
             padding: 0 24px;
         }
 
-        /* --- כותרת עליונה (Header) וניווט --- */
-        .main-header {
+        /* --- Header --- */
+        .header {
             position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
+            top: 0; left: 0; right: 0;
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(12px);
             z-index: 1000;
-            padding: 20px 0;
-            background-color: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(8px);
             border-bottom: 1px solid transparent;
             transition: all 0.3s ease;
+            padding: 20px 0;
         }
-
-        .main-header.scrolled {
+        .header.scrolled {
             padding: 12px 0;
-            border-bottom: 1px solid var(--border-color);
+            border-bottom: 1px solid var(--border);
             box-shadow: var(--shadow-sm);
         }
-
-        .main-header .container {
+        .header-content {
             display: flex;
             justify-content: space-between;
             align-items: center;
         }
-        
         .logo {
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: var(--primary-color);
+            font-size: 1.75rem;
+            font-weight: 900;
+            color: var(--primary);
             text-decoration: none;
-            letter-spacing: -0.5px;
-        }
-
-        .main-nav ul {
             display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .nav-links {
+            display: flex;
+            gap: 32px;
             list-style: none;
-            gap: 30px;
         }
-
-        .main-nav a {
-            color: var(--text-muted);
+        .nav-links a {
+            color: var(--text-body);
             text-decoration: none;
             font-weight: 600;
-            font-size: 1rem;
-            transition: color 0.2s ease;
+            font-size: 1.05rem;
+            transition: color 0.2s;
         }
-
-        .main-nav a:hover {
-            color: var(--primary-color);
+        .nav-links a:hover { color: var(--primary); }
+        .nav-cta {
+            background: var(--primary);
+            color: white !important;
+            padding: 8px 20px;
+            border-radius: 8px;
+            transition: background 0.2s;
         }
+        .nav-cta:hover { background: var(--primary-dark); }
 
-        /* --- אזור הגיבור (Hero Section) --- */
+        /* --- Hero Section --- */
         .hero {
-            padding: 160px 0 100px;
-            background: linear-gradient(135deg, #ffffff 0%, #f1f5f9 100%);
+            padding: 180px 0 100px;
+            background: radial-gradient(circle at top right, #eff6ff 0%, #f8fafc 100%);
+            position: relative;
+            overflow: hidden;
+        }
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -100px; right: -100px;
+            width: 400px; height: 400px;
+            background: var(--primary-light);
+            border-radius: 50%;
+            filter: blur(80px);
+            opacity: 0.6;
+            z-index: 0;
+        }
+        .hero-content {
+            position: relative;
+            z-index: 1;
             text-align: center;
-            border-bottom: 1px solid var(--border-color);
+            max-width: 800px;
+            margin: 0 auto;
         }
-
+        .hero-badge {
+            display: inline-block;
+            background: white;
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-weight: 600;
+            color: var(--primary);
+            font-size: 0.9rem;
+            margin-bottom: 24px;
+            box-shadow: var(--shadow-sm);
+            border: 1px solid var(--primary-light);
+            animation: slideDown 0.6s ease-out;
+        }
         .hero h1 {
-            font-size: 3.5rem;
-            font-weight: 700;
-            color: var(--text-main);
-            margin-bottom: 20px;
+            font-size: 4rem;
             line-height: 1.1;
+            font-weight: 900;
+            margin-bottom: 24px;
             letter-spacing: -1px;
-            animation: fadeInUp 0.8s ease-out;
+            animation: slideUp 0.8s ease-out 0.1s backwards;
         }
-
         .hero h1 span {
-            color: var(--primary-color);
+            background: linear-gradient(135deg, var(--primary), #0ea5e9);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
-
         .hero p {
-            font-size: 1.25rem;
-            color: var(--text-muted);
-            max-width: 700px;
-            margin: 0 auto 40px;
-            animation: fadeInUp 0.8s ease-out 0.2s backwards;
+            font-size: 1.3rem;
+            color: var(--text-body);
+            margin-bottom: 40px;
+            animation: slideUp 0.8s ease-out 0.2s backwards;
         }
-        
-        .cta-button {
-            display: inline-block;
-            padding: 14px 32px;
-            background-color: var(--primary-color);
-            color: #fff;
-            text-decoration: none;
-            border-radius: 8px;
-            font-weight: 600;
+        .hero-buttons {
+            display: flex;
+            gap: 16px;
+            justify-content: center;
+            animation: slideUp 0.8s ease-out 0.3s backwards;
+        }
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 16px 32px;
+            border-radius: 12px;
+            font-weight: 700;
             font-size: 1.1rem;
-            transition: background-color 0.2s ease, transform 0.2s ease;
-            animation: fadeInUp 0.8s ease-out 0.4s backwards;
+            text-decoration: none;
+            transition: all 0.2s;
+            cursor: pointer;
+            border: none;
         }
-
-        .cta-button:hover {
-            background-color: var(--primary-hover);
+        .btn-primary {
+            background: var(--primary);
+            color: white;
+            box-shadow: 0 4px 14px 0 rgba(37, 99, 235, 0.39);
+        }
+        .btn-primary:hover {
+            background: var(--primary-dark);
             transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(37, 99, 235, 0.23);
+        }
+        .btn-outline {
+            background: white;
+            color: var(--text-dark);
+            border: 1px solid var(--border);
+        }
+        .btn-outline:hover {
+            background: var(--bg-main);
+            border-color: #cbd5e1;
         }
 
-        .cta-secondary {
-            display: inline-block;
-            padding: 14px 32px;
-            background-color: transparent;
-            color: var(--text-main);
-            text-decoration: none;
-            border-radius: 8px;
+        /* --- Tech Stack --- */
+        .tech-stack {
+            padding: 40px 0;
+            border-bottom: 1px solid var(--border);
+            background: white;
+            text-align: center;
+        }
+        .tech-stack p {
+            font-size: 0.9rem;
+            color: var(--text-body);
             font-weight: 600;
-            font-size: 1.1rem;
-            border: 1px solid var(--border-color);
-            margin-right: 15px;
-            transition: all 0.2s ease;
-            animation: fadeInUp 0.8s ease-out 0.4s backwards;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .tech-logos {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            flex-wrap: wrap;
+            opacity: 0.6;
+            align-items: center;
+        }
+        .tech-logos span {
+            font-size: 1.2rem;
+            font-weight: 700;
+            font-family: var(--font-heading);
         }
 
-        .cta-secondary:hover {
-            background-color: var(--border-color);
-        }
-
-        /* --- אזורים כלליים (Sections) --- */
-        .section {
-            padding: 100px 0;
-        }
-
+        /* --- Services --- */
+        .section { padding: 100px 0; }
         .section-header {
             text-align: center;
-            margin-bottom: 60px;
-            max-width: 700px;
-            margin-left: auto;
-            margin-right: auto;
+            max-width: 600px;
+            margin: 0 auto 60px;
         }
-
-        .section-title {
+        .section-header h2 {
             font-size: 2.5rem;
-            font-weight: 700;
-            margin-bottom: 15px;
-            color: var(--text-main);
+            margin-bottom: 16px;
         }
-
-        .section-subtitle {
-            font-size: 1.1rem;
-            color: var(--text-muted);
+        .section-header p {
+            font-size: 1.15rem;
+            color: var(--text-body);
         }
-
-        /* --- שירותים / פתרונות (Services) --- */
         .services-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 32px;
         }
-        
         .service-card {
-            background: var(--surface-color);
-            border: 1px solid var(--border-color);
-            border-radius: 12px;
-            padding: 40px 30px;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            background: var(--bg-card);
+            padding: 40px;
+            border-radius: var(--radius);
+            border: 1px solid var(--border);
+            box-shadow: var(--shadow-sm);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
         }
-
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0; right: 0;
+            width: 4px; height: 100%;
+            background: var(--primary);
+            transform: scaleY(0);
+            transition: transform 0.3s ease;
+            transform-origin: bottom;
+        }
         .service-card:hover {
             transform: translateY(-5px);
             box-shadow: var(--shadow-lg);
         }
-
-        .service-icon {
-            width: 50px;
-            height: 50px;
-            background-color: #eff6ff;
-            color: var(--primary-color);
-            border-radius: 10px;
+        .service-card:hover::before {
+            transform: scaleY(1);
+        }
+        .icon-wrapper {
+            width: 60px; height: 60px;
+            background: var(--primary-light);
+            color: var(--primary);
+            border-radius: 14px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.5rem;
-            margin-bottom: 20px;
+            margin-bottom: 24px;
         }
-
+        .icon-wrapper svg { width: 30px; height: 30px; }
         .service-card h3 {
-            font-size: 1.4rem;
-            margin-bottom: 15px;
-            color: var(--text-main);
+            font-size: 1.5rem;
+            margin-bottom: 12px;
         }
-
         .service-card p {
-            color: var(--text-muted);
-            font-size: 1rem;
+            color: var(--text-body);
+            font-size: 1.05rem;
         }
 
-        /* --- הגישה שלנו (Approach) - שיווק לא אגרסיבי --- */
-        .approach-section {
-            background-color: var(--surface-color);
-            border-top: 1px solid var(--border-color);
-            border-bottom: 1px solid var(--border-color);
+        /* --- Approach --- */
+        .approach {
+            background: white;
+            border-top: 1px solid var(--border);
         }
-
-        .approach-content {
+        .approach-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 60px;
             align-items: center;
         }
-
-        .approach-text h2 {
-            font-size: 2.2rem;
-            margin-bottom: 20px;
+        .approach-content h2 {
+            font-size: 2.5rem;
+            margin-bottom: 24px;
         }
-
-        .approach-text p {
+        .approach-content p {
+            font-size: 1.15rem;
+            color: var(--text-body);
+            margin-bottom: 32px;
+        }
+        .check-list { list-style: none; }
+        .check-list li {
+            display: flex;
+            align-items: flex-start;
+            gap: 16px;
             margin-bottom: 20px;
-            color: var(--text-muted);
             font-size: 1.1rem;
-        }
-
-        .approach-list {
-            list-style: none;
-            margin-top: 30px;
-        }
-
-        .approach-list li {
-            position: relative;
-            padding-right: 30px;
-            margin-bottom: 15px;
             font-weight: 600;
-            color: var(--text-main);
         }
-
-        .approach-list li::before {
-            content: '✓';
-            position: absolute;
-            right: 0;
-            top: 0;
-            color: var(--primary-color);
-            font-weight: bold;
+        .check-list li svg {
+            color: var(--accent);
+            flex-shrink: 0;
+            margin-top: 4px;
         }
-
         .approach-image {
-            background-color: #f1f5f9;
-            border-radius: 16px;
-            height: 400px;
+            background: var(--bg-main);
+            border-radius: var(--radius);
+            padding: 40px;
+            border: 1px solid var(--border);
+            position: relative;
+        }
+        .mock-window {
+            background: white;
+            border-radius: 8px;
+            box-shadow: var(--shadow-md);
+            overflow: hidden;
+            border: 1px solid var(--border);
+        }
+        .mock-header {
+            background: #f1f5f9;
+            padding: 12px;
+            display: flex;
+            gap: 6px;
+            border-bottom: 1px solid var(--border);
+        }
+        .mock-dot { width: 10px; height: 10px; border-radius: 50%; background: #cbd5e1; }
+        .mock-dot:nth-child(1) { background: #ef4444; }
+        .mock-dot:nth-child(2) { background: #f59e0b; }
+        .mock-dot:nth-child(3) { background: #10b981; }
+        .mock-body { padding: 24px; }
+        .mock-line { height: 12px; background: #e2e8f0; border-radius: 6px; margin-bottom: 16px; }
+        .mock-line.short { width: 60%; }
+        .mock-line.primary { background: var(--primary-light); width: 80%; }
+
+        /* --- Contact --- */
+        .contact {
+            background: var(--bg-main);
+            position: relative;
+        }
+        .contact-card {
+            background: white;
+            max-width: 600px;
+            margin: 0 auto;
+            border-radius: var(--radius);
+            padding: 48px;
+            box-shadow: var(--shadow-lg);
+            border: 1px solid var(--border);
+        }
+        .contact-card h3 {
+            font-size: 2rem;
+            text-align: center;
+            margin-bottom: 8px;
+        }
+        .contact-card > p {
+            text-align: center;
+            color: var(--text-body);
+            margin-bottom: 32px;
+        }
+        .form-group { margin-bottom: 20px; }
+        .form-group label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: var(--text-dark);
+        }
+        .form-control {
+            width: 100%;
+            padding: 14px 16px;
+            border: 1px solid #cbd5e1;
+            border-radius: 10px;
+            font-family: var(--font-body);
+            font-size: 1rem;
+            transition: all 0.2s;
+            background: #f8fafc;
+        }
+        .form-control:focus {
+            outline: none;
+            border-color: var(--primary);
+            background: white;
+            box-shadow: 0 0 0 4px var(--primary-light);
+        }
+        textarea.form-control { resize: vertical; min-height: 120px; }
+        .btn-submit { width: 100%; margin-top: 10px; }
+        .privacy-note {
+            text-align: center;
+            font-size: 0.85rem;
+            color: #64748b;
+            margin-top: 20px;
             display: flex;
             align-items: center;
             justify-content: center;
-            color: var(--text-muted);
-            border: 1px dashed #cbd5e1;
-        }
-
-        /* --- אזור צור קשר --- */
-        .contact-section {
-            background-color: var(--background-color);
-        }
-
-        .contact-wrapper {
-            background: var(--surface-color);
-            border: 1px solid var(--border-color);
-            border-radius: 16px;
-            padding: 50px;
-            max-width: 700px;
-            margin: auto;
-            box-shadow: var(--shadow-md);
-        }
-        
-        .contact-form {
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
-        }
-
-        .form-group {
-            display: flex;
-            flex-direction: column;
-            gap: 8px;
-        }
-
-        .form-group label {
-            font-weight: 600;
-            font-size: 0.95rem;
-            color: var(--text-main);
-        }
-        
-        .contact-form input, .contact-form textarea {
-            width: 100%;
-            padding: 14px;
-            border: 1px solid var(--border-color);
-            background: var(--background-color);
-            border-radius: 8px;
-            color: var(--text-main);
-            font-family: var(--font-main);
-            transition: border-color 0.2s ease, box-shadow 0.2s ease;
-        }
-        
-        .contact-form input:focus, .contact-form textarea:focus {
-            outline: none;
-            border-color: var(--primary-color);
-            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
-        }
-
-        .contact-form button {
-            padding: 16px;
-            background-color: var(--primary-color);
-            color: #fff;
-            border: none;
-            border-radius: 8px;
-            cursor: pointer;
-            font-size: 1.1rem;
-            font-weight: 600;
-            transition: background-color 0.2s ease;
-            margin-top: 10px;
-        }
-
-        .contact-form button:hover {
-            background-color: var(--primary-hover);
-        }
-
-        .contact-disclaimer {
-            text-align: center;
-            font-size: 0.85rem;
-            color: var(--text-muted);
-            margin-top: 15px;
+            gap: 6px;
         }
 
         /* --- Footer --- */
-        .main-footer {
-            padding: 40px 0;
-            background-color: #0f172a;
+        .footer {
+            background: #0f172a;
             color: #94a3b8;
+            padding: 40px 0;
             text-align: center;
-            border-top: 1px solid var(--border-color);
         }
+        .footer p { font-size: 0.95rem; }
 
-        .main-footer p {
-            font-size: 0.95rem;
-        }
-
-        /* --- אנימציות --- */
-        @keyframes fadeInUp {
-            from { opacity: 0; transform: translateY(20px); }
+        /* --- Animations --- */
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(30px); }
             to { opacity: 1; transform: translateY(0); }
         }
-
-        .fade-in-section {
+        @keyframes slideDown {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .reveal {
             opacity: 0;
-            transform: translateY(20px);
-            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
-            will-change: opacity, visibility;
+            transform: translateY(30px);
+            transition: all 0.8s cubic-bezier(0.5, 0, 0, 1);
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
         }
 
-        .fade-in-section.is-visible {
-            opacity: 1;
-            transform: none;
-        }
-        
-        /* --- רספונסיביות --- */
+        /* --- Responsive --- */
         @media (max-width: 768px) {
-            .hero h1 { font-size: 2.5rem; }
-            .hero p { font-size: 1.1rem; }
-            .main-nav { display: none; }
-            .approach-content { grid-template-columns: 1fr; gap: 40px; }
-            .approach-image { height: 250px; }
-            .contact-wrapper { padding: 30px 20px; }
-            .cta-secondary { margin-right: 0; margin-top: 15px; display: block; }
+            .hero h1 { font-size: 2.8rem; }
+            .hero-buttons { flex-direction: column; }
+            .nav-links { display: none; }
+            .approach-grid { grid-template-columns: 1fr; gap: 40px; }
+            .contact-card { padding: 32px 24px; }
+            .section { padding: 70px 0; }
         }
     </style>
 </head>
 <body>
 
-    <!-- כותרת עליונה וניווט -->
-    <header class="main-header" id="main-header">
-        <div class="container">
-            <a href="#" class="logo">AutoFlow</a>
-            <nav class="main-nav">
-                <ul>
-                    <li><a href="#services">פתרונות</a></li>
-                    <li><a href="#approach">הגישה שלנו</a></li>
-                    <li><a href="#contact">ייעוץ ללא התחייבות</a></li>
-                </ul>
-            </nav>
+    <!-- Header -->
+    <header class="header" id="header">
+        <div class="container header-content">
+            <a href="#" class="logo">
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path><polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline><line x1="12" y1="22.08" x2="12" y2="12"></line></svg>
+                AutoFlow
+            </a>
+            <ul class="nav-links">
+                <li><a href="#services">איך זה עובד</a></li>
+                <li><a href="#approach">הגישה שלנו</a></li>
+                <li><a href="#contact" class="nav-cta">ייעוץ חינם</a></li>
+            </ul>
         </div>
     </header>
 
     <main>
-        <!-- אזור הגיבור הראשי -->
+        <!-- Hero Section -->
         <section class="hero">
-            <div class="container">
-                <h1>מייעלים את העסק שלך עם <span>אוטומציה חכמה</span></h1>
-                <p>אנחנו עוזרים לעסקים לחסוך עשרות שעות עבודה בחודש, למנוע טעויות אנוש ולשפר את השירות - באמצעות חיבור מערכות וייעול תהליכים, בלי כאב ראש טכנולוגי.</p>
-                <div>
-                    <a href="#contact" class="cta-button">בדיקת התאמה לעסק</a>
-                    <a href="#services" class="cta-secondary">איך זה עובד?</a>
+            <div class="container hero-content">
+                <div class="hero-badge">🚀 מייעלים עסקים בישראל</div>
+                <h1>מפסיקים לעבוד קשה,<br>מתחילים <span>לעבוד חכם.</span></h1>
+                <p>שחררו את הצוות ממטלות שוחקות של העתק-הדבק. אנחנו מחברים את המערכות שלכם כדי שתוכלו להתמקד במה שחשוב באמת – צמיחת העסק והגדלת הרווחים.</p>
+                <div class="hero-buttons">
+                    <a href="#contact" class="btn btn-primary">בדיקת התאמה לעסק</a>
+                    <a href="#services" class="btn btn-outline">גלו את הפתרונות שלנו</a>
                 </div>
             </div>
         </section>
 
-        <!-- אזור שירותים / פתרונות -->
+        <!-- Tech Stack -->
+        <div class="tech-stack">
+            <div class="container">
+                <p>מומחים בחיבור המערכות המובילות בעולם</p>
+                <div class="tech-logos">
+                    <span>Make</span>
+                    <span>Zapier</span>
+                    <span>Monday.com</span>
+                    <span>HubSpot</span>
+                    <span>Google Workspace</span>
+                    <span>API</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Services Section -->
         <section id="services" class="section">
-            <div class="container fade-in-section">
-                <div class="section-header">
-                    <h2 class="section-title">איפה אנחנו חוסכים לכם זמן?</h2>
-                    <p class="section-subtitle">פתרונות אוטומציה ממוקדים שפותרים צווארי בקבוק אמיתיים בעסק.</p>
+            <div class="container">
+                <div class="section-header reveal">
+                    <h2>איפה אנחנו חוסכים לכם זמן?</h2>
+                    <p>פתרונות אוטומציה ממוקדים שפותרים צווארי בקבוק אמיתיים, בלי להמציא את הגלגל מחדש.</p>
                 </div>
                 
                 <div class="services-grid">
-                    <article class="service-card">
-                        <div class="service-icon">🔄</div>
+                    <div class="service-card reveal">
+                        <div class="icon-wrapper">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 0 0-9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"></path><path d="M3 3v5h5"></path><path d="M3 12a9 9 0 0 0 9 9 9.75 9.75 0 0 0 6.74-2.74L21 16"></path><path d="M16 21v-5h5"></path></svg>
+                        </div>
                         <h3>סנכרון מערכות ו-CRM</h3>
-                        <p>חיבור חלק בין מערכות ניהול הלקוחות, הנהלת החשבונות ואתרי האינטרנט שלכם. מידע עובר אוטומטית ללא צורך בהקלדה כפולה.</p>
-                    </article>
+                        <p>סוף להקלדות הכפולות. חיבור חלק בין מערכות ניהול הלקוחות, הנהלת החשבונות ואתרי האינטרנט שלכם. המידע זורם אוטומטית ובאפס טעויות.</p>
+                    </div>
                     
-                    <article class="service-card">
-                        <div class="service-icon">📈</div>
+                    <div class="service-card reveal">
+                        <div class="icon-wrapper">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline></svg>
+                        </div>
                         <h3>אוטומציה בתהליכי מכירה</h3>
-                        <p>טיפול אוטומטי בלידים נכנסים, שליחת הצעות מחיר, תזכורות פולו-אפ ללקוחות ועדכון סטטוסים במערכת - כדי שלא תפספסו אף עסקה.</p>
-                    </article>
+                        <p>טיפול מיידי בלידים נכנסים, שליחת הצעות מחיר מעוצבות, ותזכורות פולו-אפ חכמות ללקוחות - כדי שלא תפספסו אף עסקת פוטנציאל.</p>
+                    </div>
                     
-                    <article class="service-card">
-                        <div class="service-icon">💬</div>
+                    <div class="service-card reveal">
+                        <div class="icon-wrapper">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
+                        </div>
                         <h3>שירות לקוחות חכם</h3>
-                        <p>הטמעת צ'אטבוטים, מענה אוטומטי לשאלות נפוצות בוואטסאפ ובמייל, וניתוב פניות חכם לצוות הנכון בזמן הנכון.</p>
-                    </article>
-                </div>
-            </div>
-        </section>
-
-        <!-- אזור הגישה שלנו (שיווק לא אגרסיבי) -->
-        <section id="approach" class="section approach-section">
-            <div class="container fade-in-section">
-                <div class="approach-content">
-                    <div class="approach-text">
-                        <h2>עובדים בשבילכם, לא בשביל הטכנולוגיה</h2>
-                        <p>אנחנו מאמינים שטכנולוגיה צריכה לשרת את העסק, ולא להפך. הגישה שלנו מבוססת על הבנה עמוקה של התהליכים העסקיים שלכם לפני כתיבת שורת קוד אחת.</p>
-                        <p>בלי הבטחות שווא ובלי לדחוף מערכות יקרות שאין לכם צורך בהן. אנחנו בונים פתרונות רזים, יעילים ומדויקים.</p>
-                        
-                        <ul class="approach-list">
-                            <li>אפיון תהליכים מעמיק ולמידת העסק</li>
-                            <li>שימוש בכלים מובילים (Make, Zapier, API)</li>
-                            <li>הדרכה מלאה ותמיכה טכנית שוטפת</li>
-                            <li>שקיפות מלאה בעלויות ובלוחות הזמנים</li>
-                        </ul>
-                    </div>
-                    <div class="approach-image">
-                        <!-- מקום לאיור מקצועי או תמונה של סביבת עבודה -->
-                        <svg width="120" height="120" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
-                            <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
-                            <line x1="8" y1="21" x2="16" y2="21"></line>
-                            <line x1="12" y1="17" x2="12" y2="21"></line>
-                            <polyline points="16 8 12 12 8 8"></polyline>
-                        </svg>
+                        <p>מענה אוטומטי ומותאם אישית בוואטסאפ ובמייל, ניתוב פניות חכם לצוות הנכון, ושיפור דרמטי בזמני התגובה ללקוחות שלכם.</p>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- אזור צור קשר -->
-        <section id="contact" class="section contact-section">
-            <div class="container fade-in-section">
-                <div class="section-header">
-                    <h2 class="section-title">בואו נבדוק איך אפשר לייעל</h2>
-                    <p class="section-subtitle">השאירו פרטים ונחזור אליכם לשיחת ייעוץ קצרה, ללא התחייבות וללא לחץ מכירתי.</p>
+        <!-- Approach Section -->
+        <section id="approach" class="section approach">
+            <div class="container approach-grid">
+                <div class="approach-content reveal">
+                    <h2>אנחנו פותרים בעיות,<br>לא דוחפים מערכות.</h2>
+                    <p>הגישה שלנו שונה. אנחנו מאמינים שטכנולוגיה צריכה לשרת את העסק, ולא להפך. אנחנו לא נמכור לכם מערכות יקרות שאין לכם צורך בהן, אלא נבנה פתרונות רזים ומדויקים.</p>
+                    
+                    <ul class="check-list">
+                        <li>
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                            <span><strong>אפיון מעמיק:</strong> לומדים את תהליכי העבודה שלכם לפני שורת הקוד הראשונה.</span>
+                        </li>
+                        <li>
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                            <span><strong>שקיפות מלאה:</strong> בלי אותיות קטנות. מחירים ולוחות זמנים ברורים מראש.</span>
+                        </li>
+                        <li>
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                            <span><strong>הדרכה וליווי:</strong> אנחנו לא נעלמים אחרי ההשקה. תקבלו תמיכה טכנית מלאה.</span>
+                        </li>
+                    </ul>
                 </div>
-                
-                <div class="contact-wrapper">
+                <div class="approach-image reveal">
+                    <div class="mock-window">
+                        <div class="mock-header">
+                            <div class="mock-dot"></div>
+                            <div class="mock-dot"></div>
+                            <div class="mock-dot"></div>
+                        </div>
+                        <div class="mock-body">
+                            <div class="mock-line primary"></div>
+                            <div class="mock-line"></div>
+                            <div class="mock-line short"></div>
+                            <br>
+                            <div class="mock-line primary" style="width: 40%;"></div>
+                            <div class="mock-line" style="width: 90%;"></div>
+                            <div class="mock-line" style="width: 70%;"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="section contact">
+            <div class="container">
+                <div class="contact-card reveal">
+                    <h3>בואו נבדוק איך אפשר לייעל</h3>
+                    <p>השאירו פרטים ונחזור אליכם לשיחת ייעוץ קצרה, ללא התחייבות וללא לחץ מכירתי.</p>
+                    
                     <form class="contact-form">
                         <div class="form-group">
                             <label for="name">שם מלא / שם העסק</label>
-                            <input type="text" id="name" name="name" required>
+                            <input type="text" id="name" name="name" class="form-control" required placeholder="ישראל ישראלי">
                         </div>
                         
                         <div class="form-group">
                             <label for="phone">טלפון לחזרה</label>
-                            <input type="tel" id="phone" name="phone" required dir="ltr" style="text-align: right;">
+                            <input type="tel" id="phone" name="phone" class="form-control" required dir="ltr" style="text-align: right;" placeholder="050-0000000">
                         </div>
                         
                         <div class="form-group">
                             <label for="message">מה האתגר המרכזי שלכם כרגע? (אופציונלי)</label>
-                            <textarea id="message" name="message" rows="4" placeholder="לדוגמה: אנחנו מבזבזים המון זמן על העתקת נתונים מהאתר ל-CRM..."></textarea>
+                            <textarea id="message" name="message" class="form-control" placeholder="לדוגמה: אנחנו מבזבזים המון זמן על העתקת נתונים מהאתר ל-CRM..."></textarea>
                         </div>
                         
-                        <button type="submit">שלחו פנייה</button>
-                        <p class="contact-disclaimer">הפרטים שלכם נשארים אצלנו ולא יועברו לאף צד שלישי.</p>
+                        <button type="submit" class="btn btn-primary btn-submit">שלחו פנייה לשיחת ייעוץ</button>
+                        
+                        <div class="privacy-note">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
+                            הפרטים שלכם מאובטחים ולא יועברו לאף צד שלישי.
+                        </div>
                     </form>
                 </div>
             </div>
@@ -541,7 +622,7 @@
     </main>
 
     <!-- Footer -->
-    <footer class="main-footer">
+    <footer class="footer">
         <div class="container">
             <p>&copy; 2024 AutoFlow - פתרונות אוטומציה לעסקים. כל הזכויות שמורות.</p>
         </div>
@@ -550,53 +631,41 @@
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             
-            // --- 1. אפקט רקע משתנה בגלילה לכותרת העליונה ---
-            const header = document.getElementById('main-header');
+            // --- 1. Header Scroll Effect ---
+            const header = document.getElementById('header');
             window.addEventListener('scroll', () => {
-                if (window.scrollY > 20) {
-                    header.classList.add('scrolled');
-                } else {
-                    header.classList.remove('scrolled');
-                }
+                if (window.scrollY > 20) header.classList.add('scrolled');
+                else header.classList.remove('scrolled');
             });
 
-            // --- 2. אנימציית הופעה של אזורים בגלילה (Fade In on Scroll) ---
-            const observerOptions = {
-                root: null,
-                rootMargin: '0px',
-                threshold: 0.15
-            };
-
-            const observer = new IntersectionObserver((entries, observer) => {
+            // --- 2. Scroll Reveal Animations ---
+            const revealElements = document.querySelectorAll('.reveal');
+            const revealObserver = new IntersectionObserver((entries, observer) => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
-                        entry.target.classList.add('is-visible');
+                        entry.target.classList.add('active');
                         observer.unobserve(entry.target);
                     }
                 });
-            }, observerOptions);
+            }, { threshold: 0.15, rootMargin: "0px 0px -50px 0px" });
 
-            document.querySelectorAll('.fade-in-section').forEach(section => {
-                observer.observe(section);
-            });
+            revealElements.forEach(el => revealObserver.observe(el));
             
-            // שליחת טופס לגוגל שיטס (Google Sheets)
+            // --- 3. Google Sheets Form Submission (PRESERVED LOGIC) ---
             const form = document.querySelector('.contact-form');
             const submitBtn = form.querySelector('button[type="submit"]');
             
-            // כאן תדביק את הקישור שתקבל מגוגל (Web App URL)
+            // הקישור המקורי של גוגל סקריפט - לא לגעת!
             const scriptURL = 'https://script.google.com/macros/s/AKfycbwm4Jnj57udwdjI2eptT5moO2LFR1r9DgOHRcr5If7MOuPm5y0vlgBLiyc18mNi7EOatg/exec'; 
 
             if(form) {
                 form.addEventListener('submit', e => {
-                    e.preventDefault(); // עוצר את רענון העמוד
+                    e.preventDefault(); 
                     
-                    // שינוי כפתור למצב טעינה
                     const originalBtnText = submitBtn.textContent;
                     submitBtn.textContent = 'שולח...';
                     submitBtn.disabled = true;
 
-                    // שליחת הנתונים לגוגל
                     fetch(scriptURL, { method: 'POST', body: new FormData(form)})
                         .then(response => {
                             alert('תודה רבה! הפנייה התקבלה בהצלחה ונשמרה במערכת.');
