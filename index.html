@@ -10,7 +10,7 @@
     <meta name="author" content="AutoFlow">
     <link rel="canonical" href="https://almog787.github.io/Test2/">
     
-    <title>AutoFlow | אוטומציה עסקית חכמה שחוסכת לך זמן</title>
+    <title>AutoFlow | אוטומציה עסקית חכמה - הופכים זמן לכסף</title>
     
     <style>
         /* --- הגדרות בסיס ומשתנים (עיצוב מודרני, הייטקיסטי ואמין) --- */
@@ -496,6 +496,88 @@
             padding: 8px;
         }
 
+        /* --- Process Section --- */
+        .process-steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-top: 40px;
+        }
+        .step-card {
+            text-align: center;
+            position: relative;
+        }
+        .step-number {
+            width: 40px;
+            height: 40px;
+            background: var(--primary);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 900;
+            margin: 0 auto 20px;
+            font-size: 1.2rem;
+            box-shadow: 0 4px 10px rgba(37, 99, 235, 0.3);
+        }
+        .step-card h4 { margin-bottom: 12px; font-size: 1.25rem; }
+        .step-card p { color: var(--text-body); font-size: 0.95rem; }
+
+        /* --- FAQ Section --- */
+        .faq { background: white; }
+        .faq-grid {
+            max-width: 800px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+        .faq-item {
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 20px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .faq-item:hover { border-color: var(--primary); background: var(--bg-main); }
+        .faq-question {
+            font-weight: 700;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 1.1rem;
+        }
+        .faq-answer {
+            margin-top: 12px;
+            color: var(--text-body);
+            display: none;
+            line-height: 1.5;
+        }
+        .faq-item.active .faq-answer { display: block; }
+        .faq-item.active .faq-question svg { transform: rotate(180deg); }
+        .faq-question svg { transition: transform 0.3s; }
+
+        /* --- Testimonials Section --- */
+        .testimonials { background: var(--bg-main); }
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        .testimonial-card {
+            background: white;
+            padding: 30px;
+            border-radius: 16px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            border: 1px solid var(--border);
+        }
+        .testimonial-text { font-style: italic; color: var(--text-body); margin-bottom: 20px; line-height: 1.6; }
+        .testimonial-author { display: flex; align-items: center; gap: 12px; }
+        .author-avatar { width: 48px; height: 48px; border-radius: 50%; background: #e2e8f0; display: flex; align-items: center; justify-content: center; font-weight: 700; color: var(--primary); }
+        .author-info h5 { font-size: 1rem; margin-bottom: 2px; }
+        .author-info p { font-size: 0.85rem; color: var(--text-muted); }
+
         /* --- Responsive & Typography Adjustments --- */
         @media (max-width: 1024px) {
             .hero h1 { font-size: 3.5rem; }
@@ -574,12 +656,12 @@
         <!-- Hero Section -->
         <section class="hero">
             <div class="container hero-content">
-                <div class="hero-badge">🚀 מייעלים עסקים בישראל</div>
-                <h1>מפסיקים לעבוד קשה,<br>מתחילים <span>לעבוד חכם.</span></h1>
-                <p>שחררו את הצוות ממטלות שוחקות של העתק-הדבק. אנחנו מחברים את המערכות שלכם כדי שתוכלו להתמקד במה שחשוב באמת – צמיחת העסק והגדלת הרווחים.</p>
+                <div class="hero-badge">⚡ מחזירים לכם 10+ שעות עבודה בשבוע</div>
+                <h1>הופכים זמן לכסף עם<br><span>אוטומציה עסקית.</span></h1>
+                <p>במקום לבזבז שעות על הזנת נתונים ידנית, תנו למערכות לעבוד בשבילכם. אנחנו בונים תהליכים חכמים שחוסכים לכם זמן יקר, מונעים טעויות אנוש ומאפשרים לכם לצמוח - בלי להגדיל את כוח האדם.</p>
                 <div class="hero-buttons">
-                    <a href="#contact" class="btn btn-primary">בדיקת התאמה לעסק</a>
-                    <a href="#services" class="btn btn-outline">גלו את הפתרונות שלנו</a>
+                    <a href="#contact" class="btn btn-primary">בדיקת היתכנות (ללא עלות)</a>
+                    <a href="#services" class="btn btn-outline">איך זה עובד?</a>
                 </div>
             </div>
         </section>
@@ -587,14 +669,14 @@
         <!-- Tech Stack -->
         <div class="tech-stack">
             <div class="container">
-                <p>מומחים בחיבור המערכות המובילות בעולם</p>
+                <p>המומחיות שלנו - החיבורים שלכם</p>
                 <div class="tech-logos">
                     <span>Make</span>
                     <span>Zapier</span>
-                    <span>Monday.com</span>
+                    <span>Monday</span>
                     <span>HubSpot</span>
-                    <span>Google Workspace</span>
-                    <span>API</span>
+                    <span>Google Cloud</span>
+                    <span>WhatsApp API</span>
                 </div>
             </div>
         </div>
@@ -603,8 +685,8 @@
         <section id="services" class="section">
             <div class="container">
                 <div class="section-header reveal">
-                    <h2>איפה אנחנו חוסכים לכם זמן?</h2>
-                    <p>פתרונות אוטומציה ממוקדים שפותרים צווארי בקבוק אמיתיים, בלי להמציא את הגלגל מחדש.</p>
+                    <h2>פתרונות שחוסכים לכם כסף</h2>
+                    <p>אנחנו לא רק מחברים מערכות, אנחנו מייצרים שקט נפשי ודיוק תפעולי בכל מחלקה בעסק.</p>
                 </div>
                 
                 <div class="services-grid">
@@ -612,24 +694,56 @@
                         <div class="icon-wrapper">
                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 0 0-9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"></path><path d="M3 3v5h5"></path><path d="M3 12a9 9 0 0 0 9 9 9.75 9.75 0 0 0 6.74-2.74L21 16"></path><path d="M16 21v-5h5"></path></svg>
                         </div>
-                        <h3>סנכרון מערכות ו-CRM</h3>
-                        <p>סוף להקלדות הכפולות. חיבור חלק בין מערכות ניהול הלקוחות, הנהלת החשבונות ואתרי האינטרנט שלכם. המידע זורם אוטומטית ובאפס טעויות.</p>
+                        <h3>סנכרון נתונים ו-CRM</h3>
+                        <p>המידע זורם אוטומטית בין האתר, מערכת הניהול והנהלת החשבונות. אפס הקלדות ידניות, אפס טעויות אנוש, וסדר מופתי בנתונים.</p>
                     </div>
                     
                     <div class="service-card reveal">
                         <div class="icon-wrapper">
                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline></svg>
                         </div>
-                        <h3>אוטומציה בתהליכי מכירה</h3>
-                        <p>טיפול מיידי בלידים נכנסים, שליחת הצעות מחיר מעוצבות, ותזכורות פולו-אפ חכמות ללקוחות - כדי שלא תפספסו אף עסקת פוטנציאל.</p>
+                        <h3>אוטומציית מכירות (Sales)</h3>
+                        <p>לידים מטופלים תוך שניות, הצעות מחיר נשלחות אוטומטית, ופולו-אפ חכם מוודא שאף עסקה לא נופלת בין הכיסאות. הגדילו את אחוזי הסגירה ללא מאמץ.</p>
                     </div>
                     
                     <div class="service-card reveal">
                         <div class="icon-wrapper">
                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
                         </div>
-                        <h3>שירות לקוחות חכם</h3>
-                        <p>מענה אוטומטי ומותאם אישית בוואטסאפ ובמייל, ניתוב פניות חכם לצוות הנכון, ושיפור דרמטי בזמני התגובה ללקוחות שלכם.</p>
+                        <h3>אוטומציית WhatsApp</h3>
+                        <p>מענה מיידי ללקוחות, שליחת עדכוני סטטוס הזמנה, וניהול תורים חכם - הכל ישירות בוואטסאפ של הלקוח, בערוץ הרשמי והמאובטח ביותר.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Process Section -->
+        <section class="section" style="background: #f1f5f9;">
+            <div class="container">
+                <div class="section-header reveal">
+                    <h2>איך זה קורה בפועל?</h2>
+                    <p>תהליך עבודה פשוט ושקוף שמוביל לתוצאות מהירות בשטח.</p>
+                </div>
+                <div class="process-steps reveal">
+                    <div class="step-card">
+                        <div class="step-number">1</div>
+                        <h4>אפיון ומיפוי</h4>
+                        <p>אנחנו צוללים לתהליכים הקיימים שלכם ומזהים איפה הכי כדאי להתחיל לחסוך זמן.</p>
+                    </div>
+                    <div class="step-card">
+                        <div class="step-number">2</div>
+                        <h4>בנייה והטמעה</h4>
+                        <p>אנחנו בונים את ה"מוח" האוטומטי ומחברים את כל המערכות שלכם ליחידה אחת עובדת.</p>
+                    </div>
+                    <div class="step-card">
+                        <div class="step-number">3</div>
+                        <h4>בדיקות ושיפור</h4>
+                        <p>מריצים טסטים, מוודאים שהכל דופק כמו שעון ומבצעים אופטימיזציה לביצועים מקסימליים.</p>
+                    </div>
+                    <div class="step-card">
+                        <div class="step-number">4</div>
+                        <h4>ליווי ותמיכה</h4>
+                        <p>אנחנו כאן כדי לוודא שהמערכת ממשיכה לעבוד בשבילכם ולעדכן אותה כשהעסק גדל.</p>
                     </div>
                 </div>
             </div>
@@ -639,21 +753,21 @@
         <section id="approach" class="section approach">
             <div class="container approach-grid">
                 <div class="approach-content reveal">
-                    <h2>אנחנו פותרים בעיות,<br>לא דוחפים מערכות.</h2>
-                    <p>הגישה שלנו שונה. אנחנו מאמינים שטכנולוגיה צריכה לשרת את העסק, ולא להפך. אנחנו לא נמכור לכם מערכות יקרות שאין לכם צורך בהן, אלא נבנה פתרונות רזים ומדויקים.</p>
+                    <h2>הגישה שלנו: ROI לפני הכל</h2>
+                    <p>אנחנו לא "דוחפים" מערכות יקרות. אנחנו בונים פתרונות רזים, חכמים ומדויקים שמחזירים את ההשקעה שלהם תוך חודשים ספורים.</p>
                     
                     <ul class="check-list">
                         <li>
                             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                            <span><strong>אפיון מעמיק:</strong> לומדים את תהליכי העבודה שלכם לפני שורת הקוד הראשונה.</span>
+                            <span><strong>פשטות תפעולית:</strong> המערכות שלנו קלות לשימוש ולא דורשות ידע טכני מהצוות שלכם.</span>
                         </li>
                         <li>
                             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                            <span><strong>שקיפות מלאה:</strong> בלי אותיות קטנות. מחירים ולוחות זמנים ברורים מראש.</span>
+                            <span><strong>עבודה עם הכלים הקיימים:</strong> אנחנו מתחברים למה שכבר יש לכם, בלי להכריח אתכם להחליף תוכנות.</span>
                         </li>
                         <li>
                             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                            <span><strong>הדרכה וליווי:</strong> אנחנו לא נעלמים אחרי ההשקה. תקבלו תמיכה טכנית מלאה.</span>
+                            <span><strong>אבטחת מידע:</strong> כל האוטומציות נבנות בתקנים המחמירים ביותר לשמירה על פרטיות הלקוחות.</span>
                         </li>
                     </ul>
                 </div>
@@ -678,17 +792,98 @@
             </div>
         </section>
 
+        <!-- Testimonials Section -->
+        <section class="section testimonials">
+            <div class="container">
+                <div class="section-header reveal">
+                    <h2>מה הלקוחות שלנו אומרים</h2>
+                    <p>ההצלחה שלכם היא המדד היחיד שלנו לביצועים.</p>
+                </div>
+                <div class="testimonials-grid reveal">
+                    <div class="testimonial-card">
+                        <p class="testimonial-text">"האוטומציה ש-AutoFlow בנו לנו חסכה למזכירות שלנו לפחות שעתיים ביום של הזנת נתונים ידנית. היום הכל זורם ישר ל-CRM בלי טעויות."</p>
+                        <div class="testimonial-author">
+                            <div class="author-avatar">ד"ר</div>
+                            <div class="author-info">
+                                <h5>דניאל ר.</h5>
+                                <p>מנכ"ל חברת שילוח</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="testimonial-card">
+                        <p class="testimonial-text">"החיבור לוואטסאפ שינה לנו את העסק. הלקוחות מקבלים מענה מיידי וסטטוס הזמנה בלי שאנחנו צריכים להרים את הטלפון. פשוט מדהים."</p>
+                        <div class="testimonial-author">
+                            <div class="author-avatar">שמ</div>
+                            <div class="author-info">
+                                <h5>שרון מ.</h5>
+                                <p>בעלת חנות איקומרס</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="testimonial-card">
+                        <p class="testimonial-text">"הייתי סקפטי לגבי אוטומציה לעסק קטן, אבל תוך שבועיים ראינו את ההבדל. פחות בלאגן, יותר סדר ויותר זמן להתמקד במכירות."</p>
+                        <div class="testimonial-author">
+                            <div class="author-avatar">אב</div>
+                            <div class="author-info">
+                                <h5>אבי ב.</h5>
+                                <p>מנהל משרד תיווך</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQ Section -->
+        <section class="section faq">
+            <div class="container">
+                <div class="section-header reveal">
+                    <h2>שאלות נפוצות</h2>
+                    <p>כל מה שרציתם לדעת על אוטומציה ולא העזתם לשאול.</p>
+                </div>
+                <div class="faq-grid reveal">
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            האם אוטומציה מתאימה גם לעסקים קטנים?
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                        </div>
+                        <div class="faq-answer">
+                            בהחלט. למעשה, עסקים קטנים מרוויחים הכי הרבה מאוטומציה כי היא מאפשרת להם להתנהל כמו עסק גדול עם צוות קטן. חיסכון של 5 שעות בשבוע לבעל עסק קטן הוא קריטי לצמיחה.
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            כמה זמן לוקח להטמיע מערכת אוטומציה?
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                        </div>
+                        <div class="faq-answer">
+                            זה תלוי במורכבות, אבל רוב הפרויקטים שלנו עולים לאוויר תוך 7-14 ימי עסקים. אנחנו מאמינים בשיטת "Quick Wins" - קודם כל פותרים את הבעיה הכי כואבת.
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            האם אני צריך ידע טכני כדי להפעיל את זה?
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                        </div>
+                        <div class="faq-answer">
+                            ממש לא. כל המטרה היא להוריד מכם עבודה טכנית. המערכות פועלות ברקע, ואנחנו מספקים הדרכה פשוטה וברורה לשימוש במידת הצורך.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
         <!-- Contact Section -->
         <section id="contact" class="section contact">
             <div class="container">
                 <div class="contact-card reveal">
-                    <h3>בואו נבדוק איך אפשר לייעל</h3>
-                    <p>השאירו פרטים ונחזור אליכם לשיחת ייעוץ קצרה, ללא התחייבות וללא לחץ מכירתי.</p>
+                    <h3>בואו נחסוך לכם זמן</h3>
+                    <p>השאירו פרטים לשיחת ייעוץ קצרה (15 דקות) שבה נמפה את הפוטנציאל לאוטומציה בעסק שלכם.</p>
                     
                     <div class="success-message" id="successMessage">
                         <div class="success-icon">✓</div>
-                        <h4>תודה רבה!</h4>
-                        <p>הפנייה התקבלה בהצלחה ונשמרה במערכת.<br>נחזור אליכם בהקדם.</p>
+                        <h4>הפנייה התקבלה!</h4>
+                        <p>אנחנו כבר עוברים על הפרטים ונחזור אליכם בהקדם לתיאום שיחה.</p>
                     </div>
 
                     <form class="contact-form">
@@ -768,8 +963,15 @@
             }, { threshold: 0.15, rootMargin: "0px 0px -50px 0px" });
 
             revealElements.forEach(el => revealObserver.observe(el));
+
+            // --- 3. FAQ Toggle ---
+            document.querySelectorAll('.faq-item').forEach(item => {
+                item.addEventListener('click', () => {
+                    item.classList.toggle('active');
+                });
+            });
             
-            // --- 3. Google Sheets Form Submission & Honeypot ---
+            // --- 4. Google Sheets Form Submission & Honeypot ---
             const form = document.querySelector('.contact-form');
             const submitBtn = form.querySelector('button[type="submit"]');
             const successMessage = document.getElementById('successMessage');
