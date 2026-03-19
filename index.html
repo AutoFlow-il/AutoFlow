@@ -362,7 +362,44 @@
         .mock-line.short { width: 60%; }
         .mock-line.primary { background: var(--primary-light); width: 80%; }
 
-        /* --- Contact --- */
+        /* --- Contact & Success Message --- */
+        .visually-hidden {
+            position: absolute;
+            left: -10000px;
+            top: auto;
+            width: 1px;
+            height: 1px;
+            overflow: hidden;
+        }
+        .success-message {
+            display: none;
+            text-align: center;
+            padding: 30px 10px;
+            animation: slideUp 0.5s ease-out;
+        }
+        .success-icon {
+            width: 70px;
+            height: 70px;
+            background: var(--accent);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+            margin: 0 auto 20px;
+            box-shadow: 0 10px 15px -3px rgba(16, 185, 129, 0.3);
+        }
+        .success-message h4 {
+            font-size: 1.8rem;
+            color: var(--text-dark);
+            margin-bottom: 12px;
+        }
+        .success-message p {
+            color: var(--text-body);
+            font-size: 1.15rem;
+        }
+
         .contact {
             background: var(--bg-main);
             position: relative;
@@ -593,7 +630,16 @@
                     <h3>בואו נבדוק איך אפשר לייעל</h3>
                     <p>השאירו פרטים ונחזור אליכם לשיחת ייעוץ קצרה, ללא התחייבות וללא לחץ מכירתי.</p>
                     
+                    <div class="success-message" id="successMessage">
+                        <div class="success-icon">✓</div>
+                        <h4>תודה רבה!</h4>
+                        <p>הפנייה התקבלה בהצלחה ונשמרה במערכת.<br>נחזור אליכם בהקדם.</p>
+                    </div>
+
                     <form class="contact-form">
+                        <!-- Honeypot field (Bot protection) -->
+                        <input type="text" name="bot_check" class="visually-hidden" tabindex="-1" autocomplete="off">
+                        
                         <div class="form-group">
                             <label for="name">שם מלא / שם העסק</label>
                             <input type="text" id="name" name="name" class="form-control" required placeholder="ישראל ישראלי">
@@ -651,9 +697,12 @@
 
             revealElements.forEach(el => revealObserver.observe(el));
             
-            // --- 3. Google Sheets Form Submission (PRESERVED LOGIC) ---
+            // --- 3. Google Sheets Form Submission & Honeypot ---
             const form = document.querySelector('.contact-form');
             const submitBtn = form.querySelector('button[type="submit"]');
+            const successMessage = document.getElementById('successMessage');
+            const contactHeader = document.querySelector('.contact-card h3');
+            const contactSub = document.querySelector('.contact-card > p');
             
             // הקישור המקורי של גוגל סקריפט - לא לגעת!
             const scriptURL = 'https://script.google.com/macros/s/AKfycbwm4Jnj57udwdjI2eptT5moO2LFR1r9DgOHRcr5If7MOuPm5y0vlgBLiyc18mNi7EOatg/exec'; 
@@ -662,16 +711,21 @@
                 form.addEventListener('submit', e => {
                     e.preventDefault(); 
                     
+                    // בדיקת Honeypot (חסימת בוטים)
+                    const honeypot = form.querySelector('input[name="bot_check"]').value;
+                    if (honeypot) {
+                        // אם השדה הנסתר מלא, זה בוט. נציג לו הצלחה מזויפת ולא נשלח כלום.
+                        showSuccess();
+                        return;
+                    }
+                    
                     const originalBtnText = submitBtn.textContent;
                     submitBtn.textContent = 'שולח...';
                     submitBtn.disabled = true;
 
                     fetch(scriptURL, { method: 'POST', body: new FormData(form)})
                         .then(response => {
-                            alert('תודה רבה! הפנייה התקבלה בהצלחה ונשמרה במערכת.');
-                            form.reset();
-                            submitBtn.textContent = originalBtnText;
-                            submitBtn.disabled = false;
+                            showSuccess();
                         })
                         .catch(error => {
                             console.error('Error!', error.message);
@@ -680,6 +734,13 @@
                             submitBtn.disabled = false;
                         });
                 });
+            }
+
+            function showSuccess() {
+                form.style.display = 'none';
+                if(contactHeader) contactHeader.style.display = 'none';
+                if(contactSub) contactSub.style.display = 'none';
+                successMessage.style.display = 'block';
             }
         });
     </script>
