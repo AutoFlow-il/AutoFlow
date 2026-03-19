@@ -580,13 +580,36 @@
                 observer.observe(section);
             });
             
-            // מניעת שליחת טופס (לצורך הדגמה)
+            // שליחת טופס לגוגל שיטס (Google Sheets)
             const form = document.querySelector('.contact-form');
+            const submitBtn = form.querySelector('button[type="submit"]');
+            
+            // כאן תדביק את הקישור שתקבל מגוגל (Web App URL)
+            const scriptURL = 'https://script.google.com/macros/s/AKfycbwm4Jnj57udwdjI2eptT5moO2LFR1r9DgOHRcr5If7MOuPm5y0vlgBLiyc18mNi7EOatg/exec'; 
+
             if(form) {
-                form.addEventListener('submit', function(e) {
-                    e.preventDefault();
-                    alert('תודה רבה! הפנייה התקבלה בהצלחה. נחזור אליך בהקדם.');
-                    form.reset();
+                form.addEventListener('submit', e => {
+                    e.preventDefault(); // עוצר את רענון העמוד
+                    
+                    // שינוי כפתור למצב טעינה
+                    const originalBtnText = submitBtn.textContent;
+                    submitBtn.textContent = 'שולח...';
+                    submitBtn.disabled = true;
+
+                    // שליחת הנתונים לגוגל
+                    fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+                        .then(response => {
+                            alert('תודה רבה! הפנייה התקבלה בהצלחה ונשמרה במערכת.');
+                            form.reset();
+                            submitBtn.textContent = originalBtnText;
+                            submitBtn.disabled = false;
+                        })
+                        .catch(error => {
+                            console.error('Error!', error.message);
+                            alert('אירעה שגיאה בשליחת הטופס. אנא נסו שוב או צרו קשר טלפוני.');
+                            submitBtn.textContent = originalBtnText;
+                            submitBtn.disabled = false;
+                        });
                 });
             }
         });
