@@ -13,6 +13,8 @@
     <title>AutoFlow | אוטומציה עסקית חכמה - הופכים זמן לכסף</title>
     
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Assistant:wght@400;600;700&family=Heebo:wght@400;700;900&display=swap');
+
         /* --- הגדרות בסיס ומשתנים (עיצוב מודרני, הייטקיסטי ואמין) --- */
         :root {
             --primary: #2563eb;
@@ -30,19 +32,20 @@
             --radius: 16px;
             --font-heading: 'Heebo', sans-serif;
             --font-body: 'Assistant', sans-serif;
+            --glass: rgba(255, 255, 255, 0.7);
+            --glass-border: rgba(255, 255, 255, 0.3);
         }
-
-        @import url('https://fonts.googleapis.com/css2?family=Assistant:wght@400;600;700&family=Heebo:wght@400;700;900&display=swap');
 
         /* --- איפוס --- */
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        html { scroll-behavior: smooth; }
+        html, body { 
+            scroll-behavior: smooth; 
+        }
         body {
             font-family: var(--font-body);
             background-color: var(--bg-main);
             color: var(--text-dark);
             line-height: 1.6;
-            overflow-x: hidden;
             -webkit-font-smoothing: antialiased;
         }
 
@@ -54,7 +57,52 @@
             padding: 0 24px;
         }
 
+        /* --- Section Structure --- */
+        .section {
+            padding: 100px 0;
+            position: relative;
+        }
+
         /* --- Header --- */
+        .hero-video-wrapper {
+            position: relative;
+            width: 100%;
+            height: 400px;
+            background: #1e293b;
+            border-radius: var(--radius);
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: var(--shadow-lg);
+            border: 1px solid var(--border);
+        }
+        .video-placeholder {
+            text-align: center;
+            padding: 20px;
+        }
+        .video-hint {
+            font-size: 0.8rem;
+            color: #94a3b8;
+            margin-top: 10px;
+        }
+        #video-loading {
+            text-align: center;
+            color: white;
+        }
+        .spinner {
+            width: 50px;
+            height: 50px;
+            border: 5px solid rgba(255,255,255,0.1);
+            border-top: 5px solid var(--primary);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 20px;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
         .header {
             position: fixed;
             top: 0; left: 0; right: 0;
@@ -113,6 +161,29 @@
             position: relative;
             overflow: hidden;
         }
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 1.2fr 0.8fr;
+            gap: 40px;
+            align-items: center;
+        }
+        .hero-image-wrapper {
+            position: relative;
+            animation: float 6s ease-in-out infinite;
+            display: flex;
+            justify-content: center;
+        }
+        .hero-img {
+            width: 100%;
+            max-width: 500px;
+            border-radius: 24px;
+            box-shadow: var(--shadow-lg);
+            border: 8px solid white;
+        }
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
         .hero::before {
             content: '';
             position: absolute;
@@ -145,11 +216,11 @@
             animation: slideDown 0.6s ease-out;
         }
         .hero h1 {
-            font-size: 4rem;
-            line-height: 1.1;
+            font-size: 4.5rem;
+            line-height: 1.05;
             font-weight: 900;
             margin-bottom: 24px;
-            letter-spacing: -1px;
+            letter-spacing: -2px;
             animation: slideUp 0.8s ease-out 0.1s backwards;
         }
         .hero h1 span {
@@ -202,35 +273,6 @@
             border-color: #cbd5e1;
         }
 
-        /* --- Tech Stack --- */
-        .tech-stack {
-            padding: 40px 0;
-            border-bottom: 1px solid var(--border);
-            background: white;
-            text-align: center;
-        }
-        .tech-stack p {
-            font-size: 0.9rem;
-            color: var(--text-body);
-            font-weight: 600;
-            margin-bottom: 20px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-        .tech-logos {
-            display: flex;
-            justify-content: center;
-            gap: 40px;
-            flex-wrap: wrap;
-            opacity: 0.6;
-            align-items: center;
-        }
-        .tech-logos span {
-            font-size: 1.2rem;
-            font-weight: 700;
-            font-family: var(--font-heading);
-        }
-
         /* --- Services --- */
         .section { padding: 100px 0; }
         .section-header {
@@ -257,9 +299,19 @@
             border-radius: var(--radius);
             border: 1px solid var(--border);
             box-shadow: var(--shadow-sm);
-            transition: all 0.3s ease;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             position: relative;
             overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+        .service-img {
+            width: 100%;
+            height: 160px;
+            object-fit: cover;
+            border-radius: 12px;
+            margin-bottom: 20px;
+            border: 1px solid var(--border);
         }
         .service-card::before {
             content: '';
@@ -272,8 +324,9 @@
             transform-origin: bottom;
         }
         .service-card:hover {
-            transform: translateY(-5px);
+            transform: translateY(-12px);
             box-shadow: var(--shadow-lg);
+            border-color: var(--primary-light);
         }
         .service-card:hover::before {
             transform: scaleY(1);
@@ -504,8 +557,19 @@
             margin-top: 40px;
         }
         .step-card {
+            background: white;
+            padding: 32px;
+            border-radius: 20px;
             text-align: center;
             position: relative;
+            box-shadow: var(--shadow-sm);
+            transition: all 0.3s ease;
+            border: 1px solid transparent;
+        }
+        .step-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--primary-light);
+            box-shadow: var(--shadow-md);
         }
         .step-number {
             width: 40px;
@@ -566,15 +630,17 @@
             gap: 30px;
         }
         .testimonial-card {
-            background: white;
+            background: var(--glass);
+            backdrop-filter: blur(8px);
             padding: 30px;
             border-radius: 16px;
             box-shadow: 0 4px 15px rgba(0,0,0,0.05);
-            border: 1px solid var(--border);
+            border: 1px solid var(--glass-border);
         }
         .testimonial-text { font-style: italic; color: var(--text-body); margin-bottom: 20px; line-height: 1.6; }
         .testimonial-author { display: flex; align-items: center; gap: 12px; }
-        .author-avatar { width: 48px; height: 48px; border-radius: 50%; background: #e2e8f0; display: flex; align-items: center; justify-content: center; font-weight: 700; color: var(--primary); }
+        .author-avatar { width: 56px; height: 56px; border-radius: 50%; overflow: hidden; border: 2px solid white; box-shadow: var(--shadow-sm); }
+        .author-avatar img { width: 100%; height: 100%; object-fit: cover; }
         .author-info h5 { font-size: 1rem; margin-bottom: 2px; }
         .author-info p { font-size: 0.85rem; color: var(--text-muted); }
 
@@ -588,6 +654,10 @@
             .header { padding: 15px 0; }
             .menu-toggle { display: block; }
             
+            .hero-grid { grid-template-columns: 1fr; }
+            .hero-image-wrapper { order: -1; margin-bottom: 40px; }
+            .hero-img { max-width: 320px; }
+
             .nav-links { 
                 display: none; 
                 position: absolute;
@@ -627,17 +697,14 @@
         @media (max-width: 480px) {
             .hero h1 { font-size: 2.2rem; }
             .logo { font-size: 1.5rem; }
-            .tech-logos { gap: 20px; }
-            .tech-logos span { font-size: 1rem; }
         }
     </style>
 </head>
 <body>
 
-    <!-- Header -->
     <header class="header" id="header">
         <div class="container header-content">
-            <a href="#" class="logo">
+            <a href="#hero" class="logo">
                 <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path><polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline><line x1="12" y1="22.08" x2="12" y2="12"></line></svg>
                 AutoFlow
             </a>
@@ -645,7 +712,8 @@
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
             </button>
             <ul class="nav-links" id="nav-links">
-                <li><a href="#services">איך זה עובד</a></li>
+                <li><a href="#services">שירותים</a></li>
+                <li><a href="#process">איך זה עובד</a></li>
                 <li><a href="#approach">הגישה שלנו</a></li>
                 <li><a href="#contact" class="nav-cta">ייעוץ חינם</a></li>
             </ul>
@@ -654,32 +722,22 @@
 
     <main>
         <!-- Hero Section -->
-        <section class="hero">
-            <div class="container hero-content">
-                <div class="hero-badge">⚡ מחזירים לכם 10+ שעות עבודה בשבוע</div>
-                <h1>הופכים זמן לכסף עם<br><span>אוטומציה עסקית.</span></h1>
-                <p>במקום לבזבז שעות על הזנת נתונים ידנית, תנו למערכות לעבוד בשבילכם. אנחנו בונים תהליכים חכמים שחוסכים לכם זמן יקר, מונעים טעויות אנוש ומאפשרים לכם לצמוח - בלי להגדיל את כוח האדם.</p>
-                <div class="hero-buttons">
-                    <a href="#contact" class="btn btn-primary">בדיקת היתכנות (ללא עלות)</a>
-                    <a href="#services" class="btn btn-outline">איך זה עובד?</a>
+        <section class="section hero" id="hero">
+            <div class="container hero-grid">
+                <div class="hero-content">
+                    <div class="hero-badge">⚡ מחזירים לכם 10+ שעות עבודה בשבוע</div>
+                    <h1>הופכים זמן לכסף עם<br><span>אוטומציה עסקית.</span></h1>
+                    <p>במקום לבזבז שעות על הזנת נתונים ידנית, תנו למערכות לעבוד בשבילכם. אנחנו בונים תהליכים חכמים שחוסכים לכם זמן יקר, מונעים טעויות אנוש ומאפשרים לכם לצמוח - בלי להגדיל את כוח האדם.</p>
+                    <div class="hero-buttons">
+                        <a href="#contact" class="btn btn-primary">בדיקת היתכנות (ללא עלות)</a>
+                        <a href="#process" class="btn btn-outline">איך זה עובד?</a>
+                    </div>
+                </div>
+                <div class="hero-image-wrapper reveal">
+                    <img src="https://picsum.photos/seed/automation/800/600" alt="אוטומציה עסקית" class="hero-img" loading="lazy" referrerPolicy="no-referrer">
                 </div>
             </div>
         </section>
-
-        <!-- Tech Stack -->
-        <div class="tech-stack">
-            <div class="container">
-                <p>המומחיות שלנו - החיבורים שלכם</p>
-                <div class="tech-logos">
-                    <span>Make</span>
-                    <span>Zapier</span>
-                    <span>Monday</span>
-                    <span>HubSpot</span>
-                    <span>Google Cloud</span>
-                    <span>WhatsApp API</span>
-                </div>
-            </div>
-        </div>
 
         <!-- Services Section -->
         <section id="services" class="section">
@@ -691,6 +749,7 @@
                 
                 <div class="services-grid">
                     <div class="service-card reveal">
+                        <img src="https://picsum.photos/seed/database/400/300" alt="סנכרון נתונים" class="service-img" loading="lazy" referrerPolicy="no-referrer">
                         <div class="icon-wrapper">
                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 0 0-9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"></path><path d="M3 3v5h5"></path><path d="M3 12a9 9 0 0 0 9 9 9.75 9.75 0 0 0 6.74-2.74L21 16"></path><path d="M16 21v-5h5"></path></svg>
                         </div>
@@ -699,6 +758,7 @@
                     </div>
                     
                     <div class="service-card reveal">
+                        <img src="https://picsum.photos/seed/growth/400/300" alt="אוטומציית מכירות" class="service-img" loading="lazy" referrerPolicy="no-referrer">
                         <div class="icon-wrapper">
                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline></svg>
                         </div>
@@ -707,6 +767,7 @@
                     </div>
                     
                     <div class="service-card reveal">
+                        <img src="https://picsum.photos/seed/communication/400/300" alt="אוטומציית וואטסאפ" class="service-img" loading="lazy" referrerPolicy="no-referrer">
                         <div class="icon-wrapper">
                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
                         </div>
@@ -718,7 +779,7 @@
         </section>
 
         <!-- Process Section -->
-        <section class="section" style="background: #f1f5f9;">
+        <section id="process" class="section" style="background: #f1f5f9;">
             <div class="container">
                 <div class="section-header reveal">
                     <h2>איך זה קורה בפועל?</h2>
@@ -792,8 +853,8 @@
             </div>
         </section>
 
-        <!-- Testimonials Section -->
-        <section class="section testimonials">
+        <!-- Testimonials & FAQ Section -->
+        <section id="testimonials" class="section testimonials">
             <div class="container">
                 <div class="section-header reveal">
                     <h2>מה הלקוחות שלנו אומרים</h2>
@@ -803,7 +864,9 @@
                     <div class="testimonial-card">
                         <p class="testimonial-text">"האוטומציה ש-AutoFlow בנו לנו חסכה למזכירות שלנו לפחות שעתיים ביום של הזנת נתונים ידנית. היום הכל זורם ישר ל-CRM בלי טעויות."</p>
                         <div class="testimonial-author">
-                            <div class="author-avatar">ד"ר</div>
+                            <div class="author-avatar">
+                                <img src="https://picsum.photos/seed/executive/100/100" alt="דניאל ר." loading="lazy" referrerPolicy="no-referrer">
+                            </div>
                             <div class="author-info">
                                 <h5>דניאל ר.</h5>
                                 <p>מנכ"ל חברת שילוח</p>
@@ -813,33 +876,19 @@
                     <div class="testimonial-card">
                         <p class="testimonial-text">"החיבור לוואטסאפ שינה לנו את העסק. הלקוחות מקבלים מענה מיידי וסטטוס הזמנה בלי שאנחנו צריכים להרים את הטלפון. פשוט מדהים."</p>
                         <div class="testimonial-author">
-                            <div class="author-avatar">שמ</div>
+                            <div class="author-avatar">
+                                <img src="https://picsum.photos/seed/entrepreneur/100/100" alt="שרון מ." loading="lazy" referrerPolicy="no-referrer">
+                            </div>
                             <div class="author-info">
                                 <h5>שרון מ.</h5>
                                 <p>בעלת חנות איקומרס</p>
                             </div>
                         </div>
                     </div>
-                    <div class="testimonial-card">
-                        <p class="testimonial-text">"הייתי סקפטי לגבי אוטומציה לעסק קטן, אבל תוך שבועיים ראינו את ההבדל. פחות בלאגן, יותר סדר ויותר זמן להתמקד במכירות."</p>
-                        <div class="testimonial-author">
-                            <div class="author-avatar">אב</div>
-                            <div class="author-info">
-                                <h5>אבי ב.</h5>
-                                <p>מנהל משרד תיווך</p>
-                            </div>
-                        </div>
-                    </div>
                 </div>
-            </div>
-        </section>
 
-        <!-- FAQ Section -->
-        <section class="section faq">
-            <div class="container">
-                <div class="section-header reveal">
+                <div class="section-header reveal" style="margin-top: 80px;">
                     <h2>שאלות נפוצות</h2>
-                    <p>כל מה שרציתם לדעת על אוטומציה ולא העזתם לשאול.</p>
                 </div>
                 <div class="faq-grid reveal">
                     <div class="faq-item">
@@ -849,24 +898,6 @@
                         </div>
                         <div class="faq-answer">
                             בהחלט. למעשה, עסקים קטנים מרוויחים הכי הרבה מאוטומציה כי היא מאפשרת להם להתנהל כמו עסק גדול עם צוות קטן. חיסכון של 5 שעות בשבוע לבעל עסק קטן הוא קריטי לצמיחה.
-                        </div>
-                    </div>
-                    <div class="faq-item">
-                        <div class="faq-question">
-                            כמה זמן לוקח להטמיע מערכת אוטומציה?
-                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
-                        </div>
-                        <div class="faq-answer">
-                            זה תלוי במורכבות, אבל רוב הפרויקטים שלנו עולים לאוויר תוך 7-14 ימי עסקים. אנחנו מאמינים בשיטת "Quick Wins" - קודם כל פותרים את הבעיה הכי כואבת.
-                        </div>
-                    </div>
-                    <div class="faq-item">
-                        <div class="faq-question">
-                            האם אני צריך ידע טכני כדי להפעיל את זה?
-                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
-                        </div>
-                        <div class="faq-answer">
-                            ממש לא. כל המטרה היא להוריד מכם עבודה טכנית. המערכות פועלות ברקע, ואנחנו מספקים הדרכה פשוטה וברורה לשימוש במידת הצורך.
                         </div>
                     </div>
                 </div>
@@ -906,11 +937,6 @@
                         </div>
                         
                         <button type="submit" class="btn btn-primary btn-submit">שלחו פנייה לשיחת ייעוץ</button>
-                        
-                        <div class="privacy-note">
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
-                            הפרטים שלכם מאובטחים ולא יועברו לאף צד שלישי.
-                        </div>
                     </form>
                 </div>
             </div>
@@ -920,14 +946,35 @@
     <!-- Footer -->
     <footer class="footer">
         <div class="container">
-            <p>&copy; 2024 AutoFlow - פתרונות אוטומציה לעסקים. כל הזכויות שמורות.</p>
+            <p>&copy; 2024 AutoFlow - פתרונות אוטומציה לעסקים.</p>
         </div>
     </footer>
 
-    <script>
+    <script type="module">
         document.addEventListener('DOMContentLoaded', function() {
-            
-            // --- 0. Mobile Menu Toggle ---
+            // --- Scroll Reveal Logic ---
+            const revealElements = document.querySelectorAll('.reveal');
+            const revealObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('active');
+                    }
+                });
+            }, { threshold: 0.15 });
+
+            revealElements.forEach(el => revealObserver.observe(el));
+
+            // --- Header Scroll Effect ---
+            const header = document.getElementById('header');
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 50) {
+                    header.classList.add('scrolled');
+                } else {
+                    header.classList.remove('scrolled');
+                }
+            });
+
+            // --- Mobile Menu Toggle ---
             const menuToggle = document.getElementById('menu-toggle');
             const navLinks = document.getElementById('nav-links');
 
@@ -935,60 +982,35 @@
                 menuToggle.addEventListener('click', () => {
                     navLinks.classList.toggle('active');
                 });
-
-                // Close menu when clicking a link
-                document.querySelectorAll('.nav-links a').forEach(link => {
-                    link.addEventListener('click', () => {
-                        navLinks.classList.remove('active');
-                    });
-                });
             }
 
-            // --- 1. Header Scroll Effect ---
-            const header = document.getElementById('header');
-            window.addEventListener('scroll', () => {
-                if (window.scrollY > 20) header.classList.add('scrolled');
-                else header.classList.remove('scrolled');
+            // Close mobile menu on link click
+            document.querySelectorAll('.nav-links a').forEach(link => {
+                link.addEventListener('click', () => {
+                    navLinks.classList.remove('active');
+                });
             });
 
-            // --- 2. Scroll Reveal Animations ---
-            const revealElements = document.querySelectorAll('.reveal');
-            const revealObserver = new IntersectionObserver((entries, observer) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('active');
-                        observer.unobserve(entry.target);
-                    }
-                });
-            }, { threshold: 0.15, rootMargin: "0px 0px -50px 0px" });
-
-            revealElements.forEach(el => revealObserver.observe(el));
-
-            // --- 3. FAQ Toggle ---
+            // --- FAQ Toggle ---
             document.querySelectorAll('.faq-item').forEach(item => {
                 item.addEventListener('click', () => {
                     item.classList.toggle('active');
                 });
             });
             
-            // --- 4. Google Sheets Form Submission & Honeypot ---
+            // --- Google Sheets Form Submission & Honeypot ---
             const form = document.querySelector('.contact-form');
-            const submitBtn = form.querySelector('button[type="submit"]');
+            const submitBtn = form?.querySelector('button[type="submit"]');
             const successMessage = document.getElementById('successMessage');
-            const contactHeader = document.querySelector('.contact-card h3');
-            const contactSub = document.querySelector('.contact-card > p');
             
-            // הקישור המקורי של גוגל סקריפט - לא לגעת!
             const scriptURL = 'https://script.google.com/macros/s/AKfycbwm4Jnj57udwdjI2eptT5moO2LFR1r9DgOHRcr5If7MOuPm5y0vlgBLiyc18mNi7EOatg/exec'; 
 
             if(form) {
                 form.addEventListener('submit', e => {
                     e.preventDefault(); 
                     
-                    // בדיקת Honeypot (חסימת בוטים)
                     const honeypot = form.querySelector('input[name="bot_check"]').value;
                     if (honeypot) {
-                        // אם השדה הנסתר מלא, זה בוט. נציג לו הצלחה מזויפת ולא נשלח כלום.
                         showSuccess();
                         return;
                     }
@@ -1012,8 +1034,6 @@
 
             function showSuccess() {
                 form.style.display = 'none';
-                if(contactHeader) contactHeader.style.display = 'none';
-                if(contactSub) contactSub.style.display = 'none';
                 successMessage.style.display = 'block';
             }
         });
