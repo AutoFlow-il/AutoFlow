@@ -266,8 +266,11 @@
         .lang-dropdown a:hover { background: var(--bg-alt); color: var(--primary); }
         
         /* Hide Google Translate Default Elements completely */
-        .goog-te-banner-frame.skiptranslate { display: none !important; }
-        body { top: 0px !important; }
+        .goog-te-banner-frame.skiptranslate, .goog-te-banner-frame { display: none !important; }
+        html, body { top: 0px !important; margin-top: 0px !important; padding-top: 0px !important; }
+        .goog-tooltip { display: none !important; }
+        .goog-tooltip:hover { display: none !important; }
+        .goog-text-highlight { background-color: transparent !important; border: none !important; box-shadow: none !important; }
         #google_translate_element { position: absolute; opacity: 0; pointer-events: none; z-index: -1; }
 
         /* --- Animations --- */
