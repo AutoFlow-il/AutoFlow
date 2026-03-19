@@ -240,6 +240,36 @@
         .footer { background: var(--primary); color: #94a3b8; padding: 40px 0; text-align: center; }
         .footer p { font-size: 0.95rem; }
 
+        /* --- Custom Language Selector --- */
+        .header-actions { display: flex; align-items: center; gap: 24px; }
+        .custom-lang-selector { position: relative; }
+        .lang-btn {
+            display: flex; align-items: center; gap: 6px;
+            background: white; border: 1px solid var(--border);
+            padding: 8px 12px; border-radius: 20px; cursor: pointer;
+            color: var(--text-dark); transition: all 0.2s ease;
+        }
+        .lang-btn:hover { border-color: var(--primary); color: var(--primary); }
+        .lang-dropdown {
+            position: absolute; top: 100%; right: 0; margin-top: 8px;
+            background: white; border: 1px solid var(--border); border-radius: 12px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1); display: none;
+            flex-direction: column; min-width: 140px; z-index: 100; overflow: hidden;
+            opacity: 0; transform: translateY(-10px); transition: opacity 0.2s, transform 0.2s;
+        }
+        .lang-dropdown.show { display: flex; opacity: 1; transform: translateY(0); }
+        .lang-dropdown a {
+            padding: 10px 16px; color: var(--text-dark); text-decoration: none;
+            font-size: 0.9rem; font-weight: 500; transition: background 0.2s;
+            display: flex; align-items: center; gap: 8px;
+        }
+        .lang-dropdown a:hover { background: var(--bg-alt); color: var(--primary); }
+        
+        /* Hide Google Translate Default Elements completely */
+        .goog-te-banner-frame.skiptranslate { display: none !important; }
+        body { top: 0px !important; }
+        #google_translate_element { position: absolute; opacity: 0; pointer-events: none; z-index: -1; }
+
         /* --- Animations --- */
         @keyframes slideUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
         @keyframes slideDown { from { opacity: 0; transform: translateY(-20px); } to { opacity: 1; transform: translateY(0); } }
@@ -257,6 +287,7 @@
 
         @media (max-width: 768px) {
             .header { padding: 15px 0; }
+            .header-actions { gap: 12px; }
             .menu-toggle { display: block; }
             
             .hero-grid { grid-template-columns: 1fr; }
@@ -299,15 +330,31 @@
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path><polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline><line x1="12" y1="22.08" x2="12" y2="12"></line></svg>
                 AutoFlow
             </a>
-            <button class="menu-toggle" id="menu-toggle" aria-label="Menu">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
-            </button>
-            <ul class="nav-links" id="nav-links">
-                <li><a href="#services">Services</a></li>
-                <li><a href="#process">How It Works</a></li>
-                <li><a href="#approach">Our Approach</a></li>
-                <li><a href="#contact" class="nav-cta">Free Consultation</a></li>
-            </ul>
+            <div class="header-actions">
+                <ul class="nav-links" id="nav-links">
+                    <li><a href="#services">Services</a></li>
+                    <li><a href="#process">How It Works</a></li>
+                    <li><a href="#approach">Our Approach</a></li>
+                    <li><a href="#contact" class="nav-cta">Free Consultation</a></li>
+                </ul>
+                <div class="custom-lang-selector notranslate">
+                    <button class="lang-btn" aria-label="Select Language">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                    </button>
+                    <div class="lang-dropdown">
+                        <a href="#" data-lang="en">🇺🇸 English</a>
+                        <a href="#" data-lang="es">🇪🇸 Español</a>
+                        <a href="#" data-lang="fr">🇫🇷 Français</a>
+                        <a href="#" data-lang="de">🇩🇪 Deutsch</a>
+                        <a href="#" data-lang="he">🇮🇱 עברית</a>
+                    </div>
+                    <div id="google_translate_element"></div>
+                </div>
+                <button class="menu-toggle" id="menu-toggle" aria-label="Menu">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+                </button>
+            </div>
         </div>
     </header>
 
@@ -563,8 +610,58 @@
         </div>
     </footer>
 
+    <!-- Google Translate Script -->
+    <script type="text/javascript">
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement({
+                pageLanguage: 'en',
+                layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
+                autoDisplay: false
+            }, 'google_translate_element');
+        }
+    </script>
+    <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
     <script type="module">
         document.addEventListener('DOMContentLoaded', function() {
+            // --- Custom Language Selector Logic ---
+            const langBtn = document.querySelector('.lang-btn');
+            const langDropdown = document.querySelector('.lang-dropdown');
+            const langLinks = document.querySelectorAll('.lang-dropdown a');
+
+            if (langBtn && langDropdown) {
+                langBtn.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    langDropdown.classList.toggle('show');
+                });
+
+                document.addEventListener('click', () => {
+                    langDropdown.classList.remove('show');
+                });
+
+                langLinks.forEach(link => {
+                    link.addEventListener('click', (e) => {
+                        e.preventDefault();
+                        const langCode = link.getAttribute('data-lang');
+                        
+                        let gtCombo = document.querySelector('.goog-te-combo');
+                        if (gtCombo) {
+                            gtCombo.value = langCode;
+                            gtCombo.dispatchEvent(new Event('change'));
+                        } else {
+                            // Fallback if Google Translate is still loading
+                            setTimeout(() => {
+                                gtCombo = document.querySelector('.goog-te-combo');
+                                if (gtCombo) {
+                                    gtCombo.value = langCode;
+                                    gtCombo.dispatchEvent(new Event('change'));
+                                }
+                            }, 500);
+                        }
+                    });
+                });
+            }
+
             // --- Scroll Reveal Logic ---
             const revealElements = document.querySelectorAll('.reveal');
             const revealObserver = new IntersectionObserver((entries) => {
