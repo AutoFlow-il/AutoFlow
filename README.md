@@ -4,7 +4,7 @@
 האתר נבנה בדגש על SEO לשוק הישראלי (RTL), ביצועים מהירים, וגישת שיווק לא אגרסיבית (Consultative Selling).
 
 ## 🌐 כתובת האתר
-**[הכנס כאן את כתובת האתר שלך - לדוגמה: https://yourusername.github.io/your-repo-name/]**
+**[https://almog787.github.io/Test2/](https://almog787.github.io/Test2/)**
 
 *(הערה: לאחר הפעלת GitHub Pages, תוכל לעדכן את השורה הזו עם הכתובת האמיתית שגיטהאב יספק לך, או עם הדומיין הפרטי שלך אם תחבר כזה).*
 
