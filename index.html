@@ -644,19 +644,25 @@
                         e.preventDefault();
                         const langCode = link.getAttribute('data-lang');
                         
-                        let gtCombo = document.querySelector('.goog-te-combo');
-                        if (gtCombo) {
-                            gtCombo.value = langCode;
-                            gtCombo.dispatchEvent(new Event('change'));
+                        const triggerTranslate = () => {
+                            let gtCombo = document.querySelector('.goog-te-combo');
+                            if (gtCombo) {
+                                gtCombo.value = langCode;
+                                // Google Translate requires the event to bubble
+                                gtCombo.dispatchEvent(new Event('change', { bubbles: true, cancelable: true }));
+                            } else {
+                                // Fallback: set cookie and reload if the combo box isn't found
+                                document.cookie = `googtrans=/en/${langCode}; path=/`;
+                                document.cookie = `googtrans=/en/${langCode}; domain=.${location.hostname}; path=/`;
+                                window.location.reload();
+                            }
+                        };
+
+                        // Try immediately, or wait a bit if Google Translate is still loading
+                        if (document.querySelector('.goog-te-combo')) {
+                            triggerTranslate();
                         } else {
-                            // Fallback if Google Translate is still loading
-                            setTimeout(() => {
-                                gtCombo = document.querySelector('.goog-te-combo');
-                                if (gtCombo) {
-                                    gtCombo.value = langCode;
-                                    gtCombo.dispatchEvent(new Event('change'));
-                                }
-                            }, 500);
+                            setTimeout(triggerTranslate, 500);
                         }
                     });
                 });
