@@ -2,7 +2,7 @@
 <html lang="he" dir="rtl">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <!-- הגדרות SEO חזקות לישראל -->
     <meta name="description" content="מומחים בבניית אוטומציה עסקית וייעול תהליכים. חסכו זמן, הפחיתו טעויות אנוש והגדילו רווחים עם פתרונות טכנולוגיים חכמים המותאמים אישית לעסק שלכם.">
@@ -40,6 +40,8 @@
         * { margin: 0; padding: 0; box-sizing: border-box; }
         html, body { 
             scroll-behavior: smooth; 
+            overflow-x: hidden;
+            width: 100%;
         }
         body {
             font-family: var(--font-body);
@@ -656,7 +658,7 @@
             
             .hero-grid { grid-template-columns: 1fr; }
             .hero-image-wrapper { order: -1; margin-bottom: 40px; }
-            .hero-img { max-width: 320px; }
+            .hero-img { max-width: 100%; }
 
             .nav-links { 
                 display: none; 
@@ -685,6 +687,8 @@
             .section-header h2 { font-size: 2rem; }
             
             .services-grid { grid-template-columns: 1fr; }
+            .process-steps { grid-template-columns: 1fr; }
+            .testimonials-grid { grid-template-columns: 1fr; }
             
             .approach-grid { grid-template-columns: 1fr; text-align: center; }
             .check-list li { justify-content: center; text-align: right; }
