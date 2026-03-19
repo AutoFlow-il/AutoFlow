@@ -240,33 +240,36 @@
         .footer { background: var(--primary); color: #94a3b8; padding: 40px 0; text-align: center; }
         .footer p { font-size: 0.95rem; }
 
-        /* --- Language Selector --- */
+        /* --- Custom Language Selector --- */
         .header-actions { display: flex; align-items: center; gap: 24px; }
+        .custom-lang-selector { position: relative; }
+        .lang-btn {
+            display: flex; align-items: center; gap: 6px;
+            background: white; border: 1px solid var(--border);
+            padding: 8px 12px; border-radius: 20px; cursor: pointer;
+            color: var(--text-dark); transition: all 0.2s ease;
+        }
+        .lang-btn:hover { border-color: var(--primary); color: var(--primary); }
+        .lang-dropdown {
+            position: absolute; top: 100%; right: 0; margin-top: 8px;
+            background: white; border: 1px solid var(--border); border-radius: 12px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1); display: none;
+            flex-direction: column; min-width: 140px; z-index: 100; overflow: hidden;
+            opacity: 0; transform: translateY(-10px); transition: opacity 0.2s, transform 0.2s;
+        }
+        .lang-dropdown.show { display: flex; opacity: 1; transform: translateY(0); }
+        .lang-dropdown a {
+            padding: 10px 16px; color: var(--text-dark); text-decoration: none;
+            font-size: 0.9rem; font-weight: 500; transition: background 0.2s;
+            display: flex; align-items: center; gap: 8px;
+        }
+        .lang-dropdown a:hover { background: var(--bg-alt); color: var(--primary); }
         
-        /* Style the native Google Translate element */
-        #google_translate_element { display: inline-block; }
-        .goog-te-gadget { 
-            font-family: var(--font-body) !important; 
-            color: transparent !important; 
-            font-size: 0 !important; 
-        }
-        .goog-te-gadget .goog-te-combo {
-            margin: 0;
-            padding: 8px 12px;
-            border-radius: 20px;
-            border: 1px solid var(--border);
-            font-family: var(--font-body);
-            font-size: 0.9rem;
-            color: var(--text-dark);
-            background-color: white;
-            outline: none;
-            cursor: pointer;
-        }
-        .goog-te-gadget .goog-te-combo:hover {
-            border-color: var(--primary);
-        }
-        .goog-logo-link { display: none !important; }
-        .goog-te-gadget span { display: none !important; }
+        /* Hide Google Translate Default Elements completely */
+        #google_translate_element { position: absolute; opacity: 0; pointer-events: none; z-index: -1; }
+        .goog-tooltip { display: none !important; }
+        .goog-tooltip:hover { display: none !important; }
+        .goog-text-highlight { background-color: transparent !important; border: none !important; box-shadow: none !important; }
 
         /* --- Animations --- */
         @keyframes slideUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
@@ -335,7 +338,20 @@
                     <li><a href="#approach">Our Approach</a></li>
                     <li><a href="#contact" class="nav-cta">Free Consultation</a></li>
                 </ul>
-                <div id="google_translate_element"></div>
+                <div class="custom-lang-selector notranslate">
+                    <button class="lang-btn" aria-label="Select Language">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                    </button>
+                    <div class="lang-dropdown">
+                        <a href="#" data-lang="en">🇺🇸 English</a>
+                        <a href="#" data-lang="es">🇪🇸 Español</a>
+                        <a href="#" data-lang="fr">🇫🇷 Français</a>
+                        <a href="#" data-lang="de">🇩🇪 Deutsch</a>
+                        <a href="#" data-lang="he">🇮🇱 עברית</a>
+                    </div>
+                    <div id="google_translate_element"></div>
+                </div>
                 <button class="menu-toggle" id="menu-toggle" aria-label="Menu">
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
                 </button>
@@ -609,15 +625,59 @@
 
     <script type="module">
         document.addEventListener('DOMContentLoaded', function() {
+            // --- Custom Language Selector Logic ---
+            const langBtn = document.querySelector('.lang-btn');
+            const langDropdown = document.querySelector('.lang-dropdown');
+            const langLinks = document.querySelectorAll('.lang-dropdown a');
+
+            if (langBtn && langDropdown) {
+                langBtn.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    langDropdown.classList.toggle('show');
+                });
+
+                document.addEventListener('click', () => {
+                    langDropdown.classList.remove('show');
+                });
+
+                langLinks.forEach(link => {
+                    link.addEventListener('click', (e) => {
+                        e.preventDefault();
+                        const langCode = link.getAttribute('data-lang');
+                        
+                        const triggerTranslate = () => {
+                            let gtCombo = document.querySelector('.goog-te-combo');
+                            if (gtCombo) {
+                                gtCombo.value = langCode;
+                                // Google Translate requires the event to bubble
+                                gtCombo.dispatchEvent(new Event('change', { bubbles: true, cancelable: true }));
+                            } else {
+                                // Fallback: set cookie and reload if the combo box isn't found
+                                document.cookie = `googtrans=/en/${langCode}; path=/`;
+                                document.cookie = `googtrans=/en/${langCode}; domain=.${location.hostname}; path=/`;
+                                window.location.reload();
+                            }
+                        };
+
+                        // Try immediately, or wait a bit if Google Translate is still loading
+                        if (document.querySelector('.goog-te-combo')) {
+                            triggerTranslate();
+                        } else {
+                            setTimeout(triggerTranslate, 500);
+                        }
+                    });
+                });
+            }
+
             // --- Google Translate Header Fix ---
             // Moves the fixed header down when the Google Translate banner appears
-            const header = document.querySelector('.header');
+            const translateHeader = document.querySelector('.header');
             const observer = new MutationObserver(() => {
                 const bodyTop = document.body.style.top;
                 if (bodyTop && bodyTop !== '0px') {
-                    header.style.top = bodyTop;
+                    translateHeader.style.top = bodyTop;
                 } else {
-                    header.style.top = '0px';
+                    translateHeader.style.top = '0px';
                 }
             });
             observer.observe(document.body, { attributes: true, attributeFilter: ['style'] });
