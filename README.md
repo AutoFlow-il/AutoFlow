@@ -1,4 +1,4 @@
 # 
 ## Deployment
 The site is deployed to GitHub Pages.
-[View Live Site](https://almog787.github.io/AutoFlow/)
+[View Live Site](https://autoflow-il.github.io/AutoFlow/)
