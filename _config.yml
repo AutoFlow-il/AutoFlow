@@ -1,0 +1,10 @@
+title: "AutoFlow | פיתוח אתרים ואוטומציה חכמה"
+description: "🚀 סוכנות דיגיטל ואוטומציה עסקית - קבלו הצעת מחיר בחינם 🚀"
+url: "https://almog787.github.io/Test2" # שנו לכתובת האמיתית
+author: "AutoFlow"
+lang: "he"
+dir: "rtl"
+
+# הגדרות בנייה
+markdown: kramdown
+permalink: /:title/
