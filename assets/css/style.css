@@ -95,7 +95,8 @@ h1, h2, h3, .logo { font-family: var(--font-heading); letter-spacing: -0.02em; }
 .section-header h2 { font-size: 2.5rem; margin-bottom: 16px; }
 .section-header p { font-size: 1.15rem; color: var(--text-body); }
 
-.services-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; }
+/* GRID UPDATED FOR 5 ITEMS - FULLY RESPONSIVE */
+.services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 24px; }
 .service-card {
     background: var(--bg-card); padding: 32px; border-radius: var(--radius);
     border: 1px solid var(--border); box-shadow: var(--shadow-sm);
@@ -211,7 +212,7 @@ textarea.form-control { resize: vertical; min-height: 120px; }
 @media (max-width: 1024px) {
     .hero h1 { font-size: 3.5rem; }
     .approach-grid { gap: 40px; }
-    .services-grid, .process-steps { grid-template-columns: repeat(2, 1fr); }
+    .process-steps { grid-template-columns: repeat(2, 1fr); }
 }
 
 @media (max-width: 768px) {
@@ -240,7 +241,7 @@ textarea.form-control { resize: vertical; min-height: 120px; }
     .section { padding: 60px 0; }
     .section-header h2 { font-size: 2rem; }
     
-    .services-grid, .process-steps, .testimonials-grid { grid-template-columns: 1fr; }
+    .process-steps { grid-template-columns: 1fr; }
     
     .approach-grid { grid-template-columns: 1fr; text-align: center; }
     .check-list li { justify-content: center; text-align: right; }
