@@ -54,6 +54,7 @@ h1, h2, h3, .logo { font-family: var(--font-heading); letter-spacing: -0.02em; }
     font-size: 1.5rem; font-weight: 900; color: var(--primary);
     text-decoration: none; display: flex; align-items: center; gap: 8px;
 }
+.header-actions { display: flex; align-items: center; gap: 24px; }
 .nav-links { display: flex; gap: 32px; list-style: none; align-items: center; }
 .nav-links a { color: var(--text-body); text-decoration: none; font-weight: 500; font-size: 1rem; transition: color 0.2s; }
 .nav-links a:hover { color: var(--accent); }
@@ -197,37 +198,6 @@ textarea.form-control { resize: vertical; min-height: 120px; }
 /* --- Footer --- */
 .footer { background: var(--primary); color: #94a3b8; padding: 40px 0; text-align: center; }
 .footer p { font-size: 0.95rem; }
-
-/* --- Custom Language Selector --- */
-.header-actions { display: flex; align-items: center; gap: 24px; }
-.custom-lang-selector { position: relative; }
-.lang-btn {
-    display: flex; align-items: center; gap: 6px;
-    background: white; border: 1px solid var(--border);
-    padding: 8px 12px; border-radius: 20px; cursor: pointer;
-    color: var(--text-dark); transition: all 0.2s ease;
-}
-.lang-btn:hover { border-color: var(--primary); color: var(--primary); }
-.lang-dropdown {
-    position: absolute; top: 100%; left: 0; margin-top: 8px;
-    background: white; border: 1px solid var(--border); border-radius: 12px;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.1); display: none;
-    flex-direction: column; min-width: 140px; z-index: 100; overflow: hidden;
-    opacity: 0; transform: translateY(-10px); transition: opacity 0.2s, transform 0.2s;
-}
-.lang-dropdown.show { display: flex; opacity: 1; transform: translateY(0); }
-.lang-dropdown a {
-    padding: 10px 16px; color: var(--text-dark); text-decoration: none;
-    font-size: 0.9rem; font-weight: 500; transition: background 0.2s;
-    display: flex; align-items: center; gap: 8px;
-}
-.lang-dropdown a:hover { background: var(--bg-alt); color: var(--primary); }
-
-/* Hide Google Translate Default Elements completely */
-#google_translate_element { position: absolute; opacity: 0; pointer-events: none; z-index: -1; }
-.goog-tooltip { display: none !important; }
-.goog-tooltip:hover { display: none !important; }
-.goog-text-highlight { background-color: transparent !important; border: none !important; box-shadow: none !important; }
 
 /* --- Animations --- */
 @keyframes slideUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
