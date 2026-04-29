@@ -1,10 +1,13 @@
 document.addEventListener('DOMContentLoaded', function() {
-    // --- Custom Language Selector Logic ---
+    // ==========================================
+    // 1. מנגנון בחירת שפה (Google Translate Fix)
+    // ==========================================
     const langBtn = document.querySelector('.lang-btn');
     const langDropdown = document.querySelector('.lang-dropdown');
     const langLinks = document.querySelectorAll('.lang-dropdown a');
 
     if (langBtn && langDropdown) {
+        // פתיחה וסגירה של תפריט השפות
         langBtn.addEventListener('click', (e) => {
             e.stopPropagation();
             langDropdown.classList.toggle('show');
@@ -14,37 +17,30 @@ document.addEventListener('DOMContentLoaded', function() {
             langDropdown.classList.remove('show');
         });
 
+        // לחיצה על שפה ספציפית
         langLinks.forEach(link => {
             link.addEventListener('click', (e) => {
                 e.preventDefault();
-                const langCode = link.getAttribute('data-lang');
+                const langCode = link.getAttribute('data-lang'); // למשל 'en' או 'iw'
                 
-                const triggerTranslate = () => {
-                    let gtCombo = document.querySelector('.goog-te-combo');
-                    if (gtCombo) {
-                        gtCombo.value = langCode;
-                        // Google Translate requires the event to bubble
-                        gtCombo.dispatchEvent(new Event('change', { bubbles: true, cancelable: true }));
-                    } else {
-                        // Fallback: set cookie and reload if the combo box isn't found
-                        document.cookie = `googtrans=/he/${langCode}; path=/`;
-                        document.cookie = `googtrans=/he/${langCode}; domain=.${location.hostname}; path=/`;
-                        window.location.reload();
-                    }
+                // יצירת עוגייה עבור Google Translate
+                const setTranslateCookie = (code) => {
+                    const domain = window.location.hostname;
+                    // אנחנו מגדירים את העוגייה בכל תצורה אפשרית כדי לוודא שגוגל קורא אותה
+                    document.cookie = `googtrans=/he/${code}; path=/;`;
+                    document.cookie = `googtrans=/he/${code}; path=/; domain=${domain};`;
+                    document.cookie = `googtrans=/he/${code}; path=/; domain=.${domain};`;
+                    
+                    // ריענון הדף כדי שהתרגום יופעל אוטומטית
+                    window.location.reload();
                 };
 
-                // Try immediately, or wait a bit if Google Translate is still loading
-                if (document.querySelector('.goog-te-combo')) {
-                    triggerTranslate();
-                } else {
-                    setTimeout(triggerTranslate, 500);
-                }
+                setTranslateCookie(langCode);
             });
         });
     }
 
-    // --- Google Translate Header Fix ---
-    // Moves the fixed header down when the Google Translate banner appears
+    // סידור מיקום ההאדר במקרה שגוגל דוחף סרגל כלים
     const translateHeader = document.querySelector('.header');
     const observer = new MutationObserver(() => {
         const bodyTop = document.body.style.top;
@@ -58,7 +54,10 @@ document.addEventListener('DOMContentLoaded', function() {
         observer.observe(document.body, { attributes: true, attributeFilter:['style'] });
     }
 
-    // --- Scroll Reveal Logic ---
+
+    // ==========================================
+    // 2. אנימציות חשיפה בגלילה (Scroll Reveal)
+    // ==========================================
     const revealElements = document.querySelectorAll('.reveal');
     const revealObserver = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
@@ -67,10 +66,12 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
     }, { threshold: 0.15 });
-
     revealElements.forEach(el => revealObserver.observe(el));
 
-    // --- Header Scroll Effect ---
+
+    // ==========================================
+    // 3. אפקט סקרול להאדר (Header Scroll Effect)
+    // ==========================================
     const header = document.getElementById('header');
     window.addEventListener('scroll', () => {
         if (window.scrollY > 50) {
@@ -80,64 +81,59 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
-    // --- Mobile Menu Toggle ---
+
+    // ==========================================
+    // 4. תפריט מובייל (Mobile Menu)
+    // ==========================================
     const menuToggle = document.getElementById('menu-toggle');
     const navLinks = document.getElementById('nav-links');
-
     if (menuToggle && navLinks) {
         menuToggle.addEventListener('click', () => {
             navLinks.classList.toggle('active');
         });
     }
-
-    // Close mobile menu on link click
     document.querySelectorAll('.nav-links a').forEach(link => {
         link.addEventListener('click', () => {
             if(navLinks) navLinks.classList.remove('active');
         });
     });
 
-    // --- FAQ Toggle ---
+
+    // ==========================================
+    // 5. שאלות ותשובות (FAQ Toggle)
+    // ==========================================
     document.querySelectorAll('.faq-item').forEach(item => {
         item.addEventListener('click', () => {
             item.classList.toggle('active');
         });
     });
     
-    // --- Google Sheets Form Submission & Honeypot ---
+
+    // ==========================================
+    // 6. טופס יצירת קשר (Contact Form)
+    // ==========================================
     const form = document.querySelector('.contact-form');
     const submitBtn = form?.querySelector('button[type="submit"]');
     const successMessage = document.getElementById('successMessage');
     const errorMessage = document.getElementById('errorMessage');
-    
     const scriptURL = 'https://script.google.com/macros/s/AKfycbzJtyePJdUy0teHrbFko7fm2eaZPAiwMCB7wyTT8fXZTfHmc60WvDdz2Y9yxvff0-cDHw/exec'; 
 
     if(form) {
         form.addEventListener('submit', e => {
             e.preventDefault(); 
-            
             if (errorMessage) errorMessage.style.display = 'none';
             
+            // הגנת בוטים (Honeypot)
             const honeypot = form.querySelector('input[name="bot_check"]').value;
-            if (honeypot) {
-                showSuccess();
-                return;
-            }
+            if (honeypot) { showSuccess(); return; }
             
             const originalBtnText = submitBtn.textContent;
             submitBtn.textContent = 'שולח...';
             submitBtn.disabled = true;
-
+            
             fetch(scriptURL, { method: 'POST', body: new FormData(form)})
-                .then(response => {
-                    if (response.ok || response.status === 0) {
-                        showSuccess();
-                    } else {
-                        throw new Error('Network response was not ok.');
-                    }
-                })
+                .then(response => { showSuccess(); })
                 .catch(error => {
-                    console.error('Error!', error.message);
                     if (errorMessage) errorMessage.style.display = 'block';
                     submitBtn.textContent = originalBtnText;
                     submitBtn.disabled = false;
