@@ -1,72 +1,6 @@
 document.addEventListener('DOMContentLoaded', function() {
     // ==========================================
-    // 1. מנגנון בחירת שפה (Google Translate Trigger Fix)
-    // ==========================================
-    const langBtn = document.querySelector('.lang-btn');
-    const langDropdown = document.querySelector('.lang-dropdown');
-    const langLinks = document.querySelectorAll('.lang-dropdown a');
-
-    if (langBtn && langDropdown) {
-        // פתיחה וסגירה של תפריט השפות
-        langBtn.addEventListener('click', (e) => {
-            e.stopPropagation();
-            langDropdown.classList.toggle('show');
-        });
-
-        document.addEventListener('click', () => {
-            langDropdown.classList.remove('show');
-        });
-
-        // לחיצה על שפה ספציפית
-        langLinks.forEach(link => {
-            link.addEventListener('click', (e) => {
-                e.preventDefault();
-                const langCode = link.getAttribute('data-lang'); // למשל 'en', 'es', 'he'
-
-                // אם המשתמש רוצה לחזור לעברית (שפת המקור)
-                if (langCode === 'he' || langCode === 'iw') {
-                    // מחיקת העוגיות של גוגל וריענון כדי להחזיר למצב המקורי הנקי
-                    const domain = window.location.hostname;
-                    document.cookie = `googtrans=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;`;
-                    document.cookie = `googtrans=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/; domain=${domain};`;
-                    window.location.reload();
-                    return;
-                }
-
-                // עבור שפות אחרות: חיפוש התפריט הנסתר של גוגל ושינוי הערך שלו
-                const googleSelect = document.querySelector('.goog-te-combo');
-                
-                if (googleSelect) {
-                    googleSelect.value = langCode;
-                    // הפעלת אירוע 'שינוי' כדי שגוגל יקלוט את הפעולה
-                    googleSelect.dispatchEvent(new Event('change', { bubbles: true, cancelable: true }));
-                } else {
-                    // גיבוי: אם התפריט של גוגל עדיין לא נטען, נשתמש בעוגייה
-                    const domain = window.location.hostname;
-                    document.cookie = `googtrans=/he/${langCode}; path=/;`;
-                    document.cookie = `googtrans=/he/${langCode}; path=/; domain=${domain};`;
-                    window.location.reload();
-                }
-            });
-        });
-    }
-
-    // סידור מיקום ההאדר במקרה שגוגל דוחף סרגל כלים בראש העמוד
-    const translateHeader = document.querySelector('.header');
-    const observer = new MutationObserver(() => {
-        const bodyTop = document.body.style.top;
-        if (bodyTop && bodyTop !== '0px') {
-            translateHeader.style.top = bodyTop;
-        } else {
-            translateHeader.style.top = '0px';
-        }
-    });
-    if (translateHeader) {
-        observer.observe(document.body, { attributes: true, attributeFilter:['style'] });
-    }
-
-    // ==========================================
-    // 2. אנימציות חשיפה בגלילה (Scroll Reveal)
+    // 1. אנימציות חשיפה בגלילה (Scroll Reveal)
     // ==========================================
     const revealElements = document.querySelectorAll('.reveal');
     const revealObserver = new IntersectionObserver((entries) => {
@@ -79,7 +13,7 @@ document.addEventListener('DOMContentLoaded', function() {
     revealElements.forEach(el => revealObserver.observe(el));
 
     // ==========================================
-    // 3. אפקט סקרול להאדר (Header Scroll Effect)
+    // 2. אפקט סקרול להאדר (Header Scroll Effect)
     // ==========================================
     const header = document.getElementById('header');
     window.addEventListener('scroll', () => {
@@ -91,7 +25,7 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     // ==========================================
-    // 4. תפריט מובייל (Mobile Menu)
+    // 3. תפריט מובייל (Mobile Menu)
     // ==========================================
     const menuToggle = document.getElementById('menu-toggle');
     const navLinks = document.getElementById('nav-links');
@@ -107,7 +41,7 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     // ==========================================
-    // 5. שאלות ותשובות (FAQ Toggle)
+    // 4. שאלות ותשובות (FAQ Toggle)
     // ==========================================
     document.querySelectorAll('.faq-item').forEach(item => {
         item.addEventListener('click', () => {
@@ -116,7 +50,7 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     // ==========================================
-    // 6. טופס יצירת קשר (Contact Form)
+    // 5. טופס יצירת קשר (Contact Form)
     // ==========================================
     const form = document.querySelector('.contact-form');
     const submitBtn = form?.querySelector('button[type="submit"]');
