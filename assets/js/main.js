@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', function() {
     // ==========================================
-    // 1. מנגנון בחירת שפה (Google Translate Fix)
+    // 1. מנגנון בחירת שפה (Google Translate Trigger Fix)
     // ==========================================
     const langBtn = document.querySelector('.lang-btn');
     const langDropdown = document.querySelector('.lang-dropdown');
@@ -21,26 +21,37 @@ document.addEventListener('DOMContentLoaded', function() {
         langLinks.forEach(link => {
             link.addEventListener('click', (e) => {
                 e.preventDefault();
-                const langCode = link.getAttribute('data-lang'); // למשל 'en' או 'iw'
-                
-                // יצירת עוגייה עבור Google Translate
-                const setTranslateCookie = (code) => {
-                    const domain = window.location.hostname;
-                    // אנחנו מגדירים את העוגייה בכל תצורה אפשרית כדי לוודא שגוגל קורא אותה
-                    document.cookie = `googtrans=/he/${code}; path=/;`;
-                    document.cookie = `googtrans=/he/${code}; path=/; domain=${domain};`;
-                    document.cookie = `googtrans=/he/${code}; path=/; domain=.${domain};`;
-                    
-                    // ריענון הדף כדי שהתרגום יופעל אוטומטית
-                    window.location.reload();
-                };
+                const langCode = link.getAttribute('data-lang'); // למשל 'en', 'es', 'he'
 
-                setTranslateCookie(langCode);
+                // אם המשתמש רוצה לחזור לעברית (שפת המקור)
+                if (langCode === 'he' || langCode === 'iw') {
+                    // מחיקת העוגיות של גוגל וריענון כדי להחזיר למצב המקורי הנקי
+                    const domain = window.location.hostname;
+                    document.cookie = `googtrans=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;`;
+                    document.cookie = `googtrans=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/; domain=${domain};`;
+                    window.location.reload();
+                    return;
+                }
+
+                // עבור שפות אחרות: חיפוש התפריט הנסתר של גוגל ושינוי הערך שלו
+                const googleSelect = document.querySelector('.goog-te-combo');
+                
+                if (googleSelect) {
+                    googleSelect.value = langCode;
+                    // הפעלת אירוע 'שינוי' כדי שגוגל יקלוט את הפעולה
+                    googleSelect.dispatchEvent(new Event('change', { bubbles: true, cancelable: true }));
+                } else {
+                    // גיבוי: אם התפריט של גוגל עדיין לא נטען, נשתמש בעוגייה
+                    const domain = window.location.hostname;
+                    document.cookie = `googtrans=/he/${langCode}; path=/;`;
+                    document.cookie = `googtrans=/he/${langCode}; path=/; domain=${domain};`;
+                    window.location.reload();
+                }
             });
         });
     }
 
-    // סידור מיקום ההאדר במקרה שגוגל דוחף סרגל כלים
+    // סידור מיקום ההאדר במקרה שגוגל דוחף סרגל כלים בראש העמוד
     const translateHeader = document.querySelector('.header');
     const observer = new MutationObserver(() => {
         const bodyTop = document.body.style.top;
@@ -53,7 +64,6 @@ document.addEventListener('DOMContentLoaded', function() {
     if (translateHeader) {
         observer.observe(document.body, { attributes: true, attributeFilter:['style'] });
     }
-
 
     // ==========================================
     // 2. אנימציות חשיפה בגלילה (Scroll Reveal)
@@ -68,7 +78,6 @@ document.addEventListener('DOMContentLoaded', function() {
     }, { threshold: 0.15 });
     revealElements.forEach(el => revealObserver.observe(el));
 
-
     // ==========================================
     // 3. אפקט סקרול להאדר (Header Scroll Effect)
     // ==========================================
@@ -80,7 +89,6 @@ document.addEventListener('DOMContentLoaded', function() {
             header.classList.remove('scrolled');
         }
     });
-
 
     // ==========================================
     // 4. תפריט מובייל (Mobile Menu)
@@ -98,7 +106,6 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
-
     // ==========================================
     // 5. שאלות ותשובות (FAQ Toggle)
     // ==========================================
@@ -107,7 +114,6 @@ document.addEventListener('DOMContentLoaded', function() {
             item.classList.toggle('active');
         });
     });
-    
 
     // ==========================================
     // 6. טופס יצירת קשר (Contact Form)
@@ -123,7 +129,7 @@ document.addEventListener('DOMContentLoaded', function() {
             e.preventDefault(); 
             if (errorMessage) errorMessage.style.display = 'none';
             
-            // הגנת בוטים (Honeypot)
+            // הגנת בוטים
             const honeypot = form.querySelector('input[name="bot_check"]').value;
             if (honeypot) { showSuccess(); return; }
             
